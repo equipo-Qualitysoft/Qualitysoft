@@ -4,4 +4,10 @@ Viktor Grajales
 alterando mi Commit
 Segundo Estado
 
+<<<<<<< HEAD
 mi 3 commit en master
+=======
+rama DevViktor 
+
+mi 3 commit
+>>>>>>> devViktor
