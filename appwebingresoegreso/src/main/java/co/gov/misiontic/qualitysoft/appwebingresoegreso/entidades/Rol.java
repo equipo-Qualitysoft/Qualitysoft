@@ -1,4 +1,5 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades;
 
-public class Rol {
+public enum Rol {
+    ADMINISTRADOR, EMPLEADO;
 }
