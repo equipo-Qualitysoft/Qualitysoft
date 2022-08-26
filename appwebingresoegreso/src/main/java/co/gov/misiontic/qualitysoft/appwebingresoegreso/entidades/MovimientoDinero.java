@@ -10,7 +10,7 @@ public class MovimientoDinero {
     public MovimientoDinero(double monto, String concepto, Empleado usuario) {
         this.setMonto(monto);
         this.setConcepto(concepto);
-        this.setUsuario(usuario);
+        this.usuario = usuario;
     }
 
     // Definition of Done
@@ -25,12 +25,14 @@ public class MovimientoDinero {
         this.monto = monto;
     }
 
-    //********** ENCONSTRUCCION ************************************
     // Definition of Done
     // Es posible crear montos positivos y negativos
-    // METODO POR IMPLEMENTAR
-    public void crearMonto(double monto){}
-    //*******************************************************************
+    public void crearMonto(double monto, boolean egreso){
+        if (!egreso)
+            this.setMonto(monto);
+        else
+            this.setMonto(-monto);
+    }
 
     // Definition of Done
     // Es posible leer el concepto del movimiento
@@ -47,6 +49,15 @@ public class MovimientoDinero {
     // Es posible definir que usuario(empleado) fue encargado del registro el movimiento
     public Empleado getUsuario() {
         return usuario;
+    }
+
+    @Override
+    public String toString() {
+        return "MovimientoDinero{" +
+                "monto=" + monto +
+                ", concepto='" + concepto + '\'' +
+                ", usuario=" + usuario +
+                '}';
     }
 }
 

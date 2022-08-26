@@ -44,4 +44,14 @@ public class Empleado {
     public void setRol(Rol rol) {
         this.rol = rol;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "nombre='" + nombre + '\'' +
+                ", correo='" + correo + '\'' +
+                ", empresa=" + empresa +
+                ", rol=" + rol +
+                '}';
+    }
 }
