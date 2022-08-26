@@ -65,10 +65,10 @@ public class AppwebingresoegresoApplication {
 		// Definition of Done ***  Es posible modificar el monto del movimiento
 		transaccion1.setMonto(5000000);
 
-		// Definition of Done *** Es posible crear montos negativos
+		// Definition of Done *** Es posible crear montos positivos
 		transaccion1.crearMonto(25000,false);  // INGRESO
 
-		// Definition of Done *** Es posible crear montos positivos
+		// Definition of Done *** Es posible crear montos negativos
 		transaccion1.crearMonto(350000,true);  // EGRESO
 
 		// Definition of Done *** Es posible leer el concepto del movimiento
