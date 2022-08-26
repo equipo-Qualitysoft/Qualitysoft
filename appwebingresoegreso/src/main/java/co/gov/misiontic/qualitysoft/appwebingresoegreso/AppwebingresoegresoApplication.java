@@ -36,6 +36,7 @@ public class AppwebingresoegresoApplication {
 		//************* Definition of Done de Clase Empleado ****************
 		//Es posible crear una nueva instancia de la clase Empleado
 		Empleado empleado1 = new Empleado("Euler Basante","euler206@gmail.com", qualitysoft, Rol.ADMINISTRADOR);
+		Empleado empleado2 = new Empleado("Viktor Grajales","viagramo2011@gmail.com", qualitysoft, Rol.ADMINISTRADOR);
 
 
 
