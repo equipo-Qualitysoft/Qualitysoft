@@ -29,9 +29,9 @@ public class MovimientoDinero {
     // Es posible crear montos positivos y negativos
     public void crearMonto(double monto, boolean egreso){
         if (!egreso)
-            this.setMonto(monto);
+            this.monto += monto;  // Ingreso
         else
-            this.setMonto(-monto);
+            this.monto -= monto;  // Egreso
     }
 
     // Definition of Done
