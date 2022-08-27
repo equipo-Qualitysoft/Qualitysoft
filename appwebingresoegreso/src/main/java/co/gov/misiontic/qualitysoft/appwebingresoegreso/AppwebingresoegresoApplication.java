@@ -12,8 +12,8 @@ public class AppwebingresoegresoApplication {
 
 	public static void main(String[] args) 	{
 		SpringApplication.run(AppwebingresoegresoApplication.class, args);
-    
-		//************* Definition of Done de Clase Empresa ****************
+
+//************* Definition of Done de Clase Empresa ****************
 		//Es posible crear una nueva instancia de la clase Empresa
 		Empresa qualitysoft = new Empresa("Qualitysoft","Carrera 14 NO. 16-23",7280863, 900854025);
 		Empresa amazon = new Empresa("Amazon","Carrera 29 NO. 44-21",207119, 800298922);
