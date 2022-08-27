@@ -13,13 +13,12 @@ public class AppwebingresoegresoApplication {
 	public static void main(String[] args) 	{
 		SpringApplication.run(AppwebingresoegresoApplication.class, args);
 
+
+    
 		//************* Definition of Done de Clase Empresa ****************
 		//Es posible crear una nueva instancia de la clase Empresa
 		Empresa qualitysoft = new Empresa("Qualitysoft","Carrera 14 NO. 16-23",7280863, 900854025);
-
-
-
-
+		Empresa amazon = new Empresa("Amazon","Carrera 29 NO. 44-21",207119, 800298922);
 
 
 
@@ -37,21 +36,22 @@ public class AppwebingresoegresoApplication {
 		//Es posible crear una nueva instancia de la clase Empleado
 		Empleado empleado1 = new Empleado("Euler Basante","euler206@gmail.com", qualitysoft, Rol.ADMINISTRADOR);
 		Empleado empleado2 = new Empleado("Viktor Grajales","viagramo2011@gmail.com", qualitysoft, Rol.ADMINISTRADOR);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+		
+    //Es posible leer y modificar el nombre de un empleado
+		System.out.println(empleado1.getNombre());
+		empleado1.setNombre("Luis Perea");
+		
+    //Es posible leer y modificar el correo de un empleado
+		System.out.println(empleado1.getCorreo());
+		empleado1.setCorreo("luisperea2022@gmail.com");
+		
+    //Es posible leer y modificar la empresa a la que el empleado pertenece
+		System.out.println(empleado1.getEmpresa());
+		empleado1.setEmpresa(amazon);
+		
+    //Es posible leer y modificar la empresa a la que el empleado pertenece
+		System.out.println(empleado1.getRol());
+		empleado1.setRol(Rol.EMPLEADO);
 
 		//****************** Fin Clase Empleado *******************************************************
 
