@@ -13,65 +13,73 @@ public class AppwebingresoegresoApplication {
 	public static void main(String[] args) 	{
 		SpringApplication.run(AppwebingresoegresoApplication.class, args);
 
-//************* Definition of Done de Clase Empresa ****************
-		//Es posible crear una nueva instancia de la clase Empresa
+		//************* Definition of Done de Clase Empresa ****************
+		
+		//Definition of Done *** Es posible crear una nueva instancia de la clase Empresa
 		Empresa qualitysoft = new Empresa("Qualitysoft","Carrera 14 NO. 16-23",7280863, 900854025);
 		Empresa amazon = new Empresa("Amazon","Carrera 29 NO. 44-21",207119, 800298922);
-		//************* Definition of Done de Clase Empresa ****************
-		//Defition of Done//Tareas del sprint clase Empresa
-
-		//leer el nombre de la empresa
+		
+		//Definition of Done *** Es posible leer el nombre de la empresa
 		System.out.println(qualitysoft.getNombre());
 
-		//modificar el nombre de la empresa
+		//Definition of Done *** Es posible modificar el nombre de la empresa
 		qualitysoft.setNombre("Equipo Qualitysoft");
 
-		//leer la direccion de la empresa
+		//Definition of Done *** Es posible leer la direccion de la empresa
 		System.out.println(qualitysoft.getDireccion());
 
-		//modificar la direccion de la empresa
+		//Definition of Done *** Es posible modificar la direccion de la empresa
 		qualitysoft.setDireccion("carrera 10 N0.20-24");
 
-		//leer el telefono de la empresa
+		//Definition of Done *** Es posible leer el telefono de la empresa
 		System.out.println(qualitysoft.getTelefono());
 
-		//modificar el telefono de la empresa
+		//Definition of Done *** Es posible modificar el telefono de la empresa
 		qualitysoft.setTelefono(7803426);
 
-		//leer el nit de la empresa
+		//Definition of Done *** Es posible leer el nit de la empresa
 		System.out.println(qualitysoft.getNit());
 
-		//modificar el nit de la empresa
+		//Definition of Done *** Es posible modificar el nit de la empresa
 		qualitysoft.setNit(1023432134);
 
-		//*************** FIN CLASE EMPRESA ********************************************
+		//*************** FIN CLASE EMPRESA *********************************
 
 		//************* Definition of Done de Clase Empleado ****************
-		//Es posible crear una nueva instancia de la clase Empleado
+		
+		//Definition of Done *** Es posible crear una nueva instancia de la clase Empleado
 		Empleado empleado1 = new Empleado("Euler Basante","euler206@gmail.com", qualitysoft, Rol.ADMINISTRADOR);
 		Empleado empleado2 = new Empleado("Viktor Grajales","viagramo2011@gmail.com", qualitysoft, Rol.ADMINISTRADOR);
 		
-    		//Es posible leer y modificar el nombre de un empleado
+    		//Definition of Done *** Es posible leer el nombre de un empleado
 		System.out.println(empleado1.getNombre());
+		
+		//Definition of Done *** modificar el nombre de un empleado
 		empleado1.setNombre("Luis Perea");
 		
-    		//Es posible leer y modificar el correo de un empleado
+    		//Definition of Done *** Es posible leer el correo de un empleado
 		System.out.println(empleado1.getCorreo());
+		
+		//Definition of Done *** Es posible modificar el correo de un empleado
 		empleado1.setCorreo("luisperea2022@gmail.com");
 		
-    		//Es posible leer y modificar la empresa a la que el empleado pertenece
+    		//Definition of Done *** Es posible leer la empresa a la que el empleado pertenece
 		System.out.println(empleado1.getEmpresa());
+		
+		//Definition of Done *** Es posible modificar la empresa a la que el empleado pertenece
 		empleado1.setEmpresa(amazon);
 		
-    		//Es posible leer y modificar la empresa a la que el empleado pertenece
+    		//Definition of Done *** Es posible leer la empresa a la que el empleado pertenece
 		System.out.println(empleado1.getRol());
+		
+		//Definition of Done *** Es posible modificar la empresa a la que el empleado pertenece
 		empleado1.setRol(Rol.EMPLEADO);
 
-		//****************** Fin Clase Empleado *******************************************************
+		//****************** Fin Clase Empleado *************************************
 
 		//************* Definition of Done de Clase MovimientoDinero ****************
-		//Es posible crear una nueva instancia de la clase MovimeintoDinero
-		MovimientoDinero transaccion1 = new MovimientoDinero(1000000, "consignacion", empleado1); //para empleado 1 falta la implentacion de la clase empleado
+		//Definition of Done *** Es posible crear una nueva instancia de la clase MovimeintoDinero
+		MovimientoDinero transaccion1 = new MovimientoDinero(1000000, "consignacion", empleado1); 
 
 		// Definition of Done *** Es posible leer el monto del movimiento
 		System.out.println(transaccion1.getMonto());
@@ -96,6 +104,7 @@ public class AppwebingresoegresoApplication {
 
 		// -------------- leer clase MovimientoDinero ---------------------------
 		System.out.println(transaccion1);
+		
 		// **************** fin clase MovimientoDinero *******************************************
 
 	}
