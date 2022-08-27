@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement />
+  <nodes>
+    <node x="-53.5" y="-93.5">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Empresa</node>
+    <node x="-87.5" y="-36.0">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.MovimientoDinero</node>
+    <node x="-59.0" y="-164.0">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Empleado</node>
+  </nodes>
+  <notes />
+  <edges />
+  <settings layout="Hierarchic Compact" zoom="1.0" showDependencies="false" x="458.0" y="202.5" />
+  <SelectedNodes>
+    <node>co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.MovimientoDinero</node>
+  </SelectedNodes>
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
