@@ -13,20 +13,36 @@ public class AppwebingresoegresoApplication {
 	public static void main(String[] args) 	{
 		SpringApplication.run(AppwebingresoegresoApplication.class, args);
 
-    		//************* Definition of Done de Clase Empresa ****************
+//************* Definition of Done de Clase Empresa ****************
 		//Es posible crear una nueva instancia de la clase Empresa
 		Empresa qualitysoft = new Empresa("Qualitysoft","Carrera 14 NO. 16-23",7280863, 900854025);
 		Empresa amazon = new Empresa("Amazon","Carrera 29 NO. 44-21",207119, 800298922);
+		//************* Definition of Done de Clase Empresa ****************
+		//Defition of Done//Tareas del sprint clase Empresa
 
+		//leer el nombre de la empresa
+		System.out.println(qualitysoft.getNombre());
 
+		//modificar el nombre de la empresa
+		qualitysoft.setNombre("Equipo Qualitysoft");
 
+		//leer la direccion de la empresa
+		System.out.println(qualitysoft.getDireccion());
 
+		//modificar la direccion de la empresa
+		qualitysoft.setDireccion("carrera 10 N0.20-24");
 
+		//leer el telefono de la empresa
+		System.out.println(qualitysoft.getTelefono());
 
+		//modificar el telefono de la empresa
+		qualitysoft.setTelefono(7803426);
 
+		//leer el nit de la empresa
+		System.out.println(qualitysoft.getNit());
 
-
-
+		//modificar el nit de la empresa
+		qualitysoft.setNit(1023432134);
 
 		//*************** FIN CLASE EMPRESA ********************************************
 
