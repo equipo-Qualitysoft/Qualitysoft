@@ -3,20 +3,18 @@
   <ID>JAVA</ID>
   <OriginalElement />
   <nodes>
-    <node x="-635.0" y="65.33333333333334">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Perfil</node>
-    <node x="-362.6666666666667" y="30.999999999999915">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Empleado</node>
-    <node x="-652.3333333333333" y="309.66666666666663">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Rol</node>
-    <node x="-68.00000000000006" y="15.666666666666671">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Empresa</node>
+    <node x="-505.0" y="15.0">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Empresa</node>
+    <node x="-653.0" y="64.0">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Perfil</node>
+    <node x="-653.0" y="15.0">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Empleado</node>
+    <node x="-653.0" y="113.0">co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Rol</node>
   </nodes>
   <notes />
   <edges />
-  <settings layout="Hierarchic Compact" zoom="1.5" showDependencies="false" x="-268.99999999999994" y="260.66666666666663" />
+  <settings layout="Hierarchic Compact" zoom="1.5" showDependencies="false" x="-515.5" y="88.5" />
   <SelectedNodes>
     <node>co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Perfil</node>
   </SelectedNodes>
-  <Categories>
-    <Category>Fields</Category>
-  </Categories>
+  <Categories />
   <SCOPE>All</SCOPE>
   <VISIBILITY>private</VISIBILITY>
 </Diagram>
