@@ -1,18 +1,36 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades;
 
+import java.time.LocalDate;
+import java.util.Arrays;
+
 public class Empresa {
-
     //atributos
+    private long idEmpresa;
     private String nombre;
+    private String nit;
+    private String telefono;
     private String direccion;
-    private int telefono;
-    private int nit;
+    private Empleado usuarios[];
+    private MovimientoDinero movimientos[];
+    private LocalDate fechaCreacion;
+    private LocalDate fechaActualizaion;
 
-    public Empresa(String nombre, String direccion, int telefono, int nit) {
+    public Empresa(String nombre, String nit, String telefono, String direccion, Empleado[] empleados, MovimientoDinero[] movimientos) {
         this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
         this.nit = nit;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.usuarios = empleados;
+        this.movimientos = movimientos;
+        this.fechaCreacion = LocalDate.now();;
+    }
+
+    public long getIdEmpresa() {
+        return idEmpresa;
+    }
+
+    public void setIdEmpresa(long idEmpresa) {
+        this.idEmpresa = idEmpresa;
     }
 
     public String getNombre() {
@@ -23,6 +41,22 @@ public class Empresa {
         this.nombre = nombre;
     }
 
+    public String getNit() {
+        return nit;
+    }
+
+    public void setNit(String nit) {
+        this.nit = nit;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
     public String getDireccion() {
         return direccion;
     }
@@ -31,29 +65,50 @@ public class Empresa {
         this.direccion = direccion;
     }
 
-    public int getTelefono() {
-        return telefono;
+    public Empleado[] getUsuario() {
+        return usuarios;
     }
 
-    public void setTelefono(int telefono) {
-        this.telefono = telefono;
+    public void setUsuario(Empleado[] empleados) {
+        this.usuarios = empleados;
     }
 
-    public int getNit() {
-        return nit;
+    public MovimientoDinero[] getMovimientos() {
+        return movimientos;
     }
 
-    public void setNit(int nit) {
-        this.nit = nit;
+    public void setMovimientos(MovimientoDinero[] movimientos) {
+        this.movimientos = movimientos;
+    }
+
+    public LocalDate getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDate fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public LocalDate getFechaActualizaion() {
+        return fechaActualizaion;
+    }
+
+    public void setFechaActualizaion(LocalDate fechaActualizaion) {
+        this.fechaActualizaion = fechaActualizaion;
     }
 
     @Override
     public String toString() {
         return "Empresa{" +
-                "nombre='" + nombre + '\'' +
+                "id=" + idEmpresa +
+                ", nombre='" + nombre + '\'' +
+                ", nit='" + nit + '\'' +
+                ", telefono='" + telefono + '\'' +
                 ", direccion='" + direccion + '\'' +
-                ", telefono=" + telefono +
-                ", nit=" + nit +
+                ", usuario=" + Arrays.toString(usuarios) +
+                ", movimientos=" + Arrays.toString(movimientos) +
+                ", fechaCreacion=" + fechaCreacion +
+                ", fechaActualizaion=" + fechaActualizaion +
                 '}';
     }
 }

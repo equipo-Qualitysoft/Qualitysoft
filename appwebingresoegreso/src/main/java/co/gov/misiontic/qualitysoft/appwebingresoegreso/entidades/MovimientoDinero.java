@@ -1,62 +1,106 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades;
 
+import java.time.LocalDate;
+
 public class MovimientoDinero {
-    private double monto;
+    private long idMovimiento;
     private String concepto;
+    private float monto;
     private Empleado usuario;
+    private Empresa empresa;
+    private LocalDate fechaCreacion;
+    private LocalDate fechaActualizacion;
 
-    // Definition of Done
-    // Es posible crear una nueva instancia de la clase MovimientoDinero
-    public MovimientoDinero(double monto, String concepto, Empleado usuario) {
-        this.setMonto(monto);
-        this.setConcepto(concepto);
-        this.usuario = usuario;
-    }
-
-    // Definition of Done
-    // Es posible leer el monto del movimiento
-    public double getMonto() {
-        return monto;
-    }
-
-    // Definition of Done
-    // Es posible modificar el monto del movimiento
-    public void setMonto(double monto) {
+    public MovimientoDinero(String concepto, float monto, Empleado usuario, Empresa empresa) {
+        this.concepto = concepto;
         this.monto = monto;
+        this.usuario = usuario;
+        this.empresa = empresa;
+        this.fechaCreacion = LocalDate.now();;
     }
 
-    // Definition of Done
-    // Es posible crear montos positivos y negativos
-    public void crearMonto(double monto, boolean egreso){
-        if (!egreso)
-            this.monto += monto;  // Ingreso
-        else
-            this.monto -= monto;  // Egreso
+    public MovimientoDinero(String concepto, float monto) {
+        this.concepto = concepto;
+        this.monto = monto;
+        this.usuario = getUsuario();
+        this.empresa = getEmpresa();
+        this.fechaCreacion = getFechaCreacion();;
+        this.fechaActualizacion = LocalDate.now();
     }
 
-    // Definition of Done
-    // Es posible leer el concepto del movimiento
+    public void crearMonto(float monto){
+        if (monto > 0)
+            new MovimientoDinero("INGRESO", monto);
+        else if(monto < 0)
+            new MovimientoDinero("EGRESO", monto);
+    }
+
+    public long getIdMovimiento() {
+        return idMovimiento;
+    }
+
+    public void setIdMovimiento(long idMovimiento) {
+        this.idMovimiento = idMovimiento;
+    }
+
     public String getConcepto() {
         return concepto;
     }
-    // Definition of Done
-    // Es posible modificar el concepto del movimiento
+
     public void setConcepto(String concepto) {
         this.concepto = concepto;
     }
 
-    // Definition of Done
-    // Es posible definir que usuario(empleado) fue encargado del registro el movimiento
+    public float getMonto() {
+        return monto;
+    }
+
+    public void setMonto(float monto) {
+        this.monto = monto;
+    }
+
     public Empleado getUsuario() {
         return usuario;
+    }
+
+    public void setUsuario(Empleado empleado) {
+        this.usuario = empleado;
+    }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
+    public LocalDate getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(LocalDate fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public LocalDate getFechaActualizacion() {
+        return fechaActualizacion;
+    }
+
+    public void setFechaActualizacion(LocalDate fechaActualizacion) {
+        this.fechaActualizacion = fechaActualizacion;
     }
 
     @Override
     public String toString() {
         return "MovimientoDinero{" +
-                "monto=" + monto +
+                "id=" + idMovimiento +
                 ", concepto='" + concepto + '\'' +
+                ", monto=" + monto +
                 ", usuario=" + usuario +
+                ", empresa=" + empresa +
+                ", fechaCreacion=" + fechaCreacion +
+                ", fechaActualizacion=" + fechaActualizacion +
                 '}';
     }
 }
