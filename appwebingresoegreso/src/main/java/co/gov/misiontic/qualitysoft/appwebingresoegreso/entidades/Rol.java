@@ -1,37 +1,26 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "roles")
 public enum Rol {
-    ADMIN(1, "Administrador"),
-    USER(2, "Operario");
+    ADMIN("Administrador"),
+    USER("Operario");
+    @Getter
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int idRol;
+    @Getter @Setter
+    @Column(name = "descripcion")
     private String descripcion;
-
-    Rol(int idRol, String descripcion) {
-        this.idRol = idRol;
+    Rol(String descripcion) {
+        this.idRol = ordinal();
         this.descripcion = descripcion;
     }
-
-    public int getIdRol() {
-        return idRol;
-    }
-
-    public void setIdRol(int idRol) {
-        this.idRol = idRol;
-    }
-
-    public String getDescripcion() {
-        return descripcion;
-    }
-
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-    @Override
-    public String toString() {
-        return "Rol{" +
-                "id=" + idRol +
-                ", descripcion='" + descripcion + '\'' +
-                '}';
+    Rol() {
     }
 }
