@@ -23,26 +23,27 @@ public class Usuario {
     private String telefono;
     @Column(name = "clave")
     private String clave;
-    @Column(name = "rol_id")
-    @Enumerated(EnumType.ORDINAL)
-    private Rol rol;
+    //@OneToOne
+//    @Column(name = "id_rol")
+//    @Enumerated(EnumType.STRING)
+//    private Rol rol;
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
     @OneToMany
-    @JoinColumn(name = "Movimiento_id")
+    @JoinColumn(name = "movimiento_id")
     private List<MovimientoDinero> movimientos;
     @Column(name = "fecha")
     private LocalDate fecha;
     public Usuario() {
     }
-    public Usuario(String nombre, String imagen, String correo, String telefono, String clave, Rol rol, Empresa empresa, List<MovimientoDinero> movimientos) {
+    public Usuario(String nombre, String imagen, String correo, String telefono, String clave, /*Rol rol,*/ Empresa empresa, List<MovimientoDinero> movimientos) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.correo = correo;
         this.telefono = telefono;
         this.clave = clave;
-        this.rol = rol;
+       // this.rol = rol;
         this.empresa = empresa;
         this.movimientos = movimientos;
         this.fecha = LocalDate.now();

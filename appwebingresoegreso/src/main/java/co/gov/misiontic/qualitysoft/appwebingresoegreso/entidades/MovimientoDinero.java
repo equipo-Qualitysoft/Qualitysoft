@@ -4,8 +4,8 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-
-@Entity @Data
+@Data
+@Entity
 @Table(name="movimientos")
 public class MovimientoDinero {
     @Id
@@ -19,9 +19,9 @@ public class MovimientoDinero {
     @ManyToOne
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
-    private Empresa empresa;
+//    @ManyToOne
+//    @JoinColumn(name = "empresa_id")
+//    private Empresa empresa;
     @Column(name = "fecha")
     private LocalDate fecha;
     public MovimientoDinero() {
@@ -30,7 +30,7 @@ public class MovimientoDinero {
         this.concepto = concepto;
         this.monto = monto;
         this.usuario = usuario;
-        this.empresa = empresa;
+        //this.empresa = empresa.;
         this.fecha = LocalDate.now();
     }
 }
