@@ -15,7 +15,16 @@ public class MovimientoService {
     public List<MovimientoDinero> getMovimientoDineroList(){
         return movimientoRepository.findAll();
     }
-public MovimientoDinero createMovimientoDinero(MovimientoDinero movimientoDinero){
-        return movimientoRepository.save(movimientoDinero);
-    }
+//public MovimientoDinero createMovimientoDinero(MovimientoDinero movimientoDinero){
+//        return movimientoRepository.save(movimientoDinero);
+//    }
+//
+//    public List<MovimientoDinero> getMovimientoDineroListByEmpresa(Long idEmpresa) {
+//        return movimientoRepository.findByEmpresaId(idEmpresa);
+//    }
+
+//    public MovimientoDinero createMovimientoDinero(Long idEmpresa, MovimientoDinero movimientoDinero) {
+//        movimientoDinero.setEmpresaById(idEmpresa);
+//        return movimientoRepository.save(movimientoDinero);
+//    }
 }

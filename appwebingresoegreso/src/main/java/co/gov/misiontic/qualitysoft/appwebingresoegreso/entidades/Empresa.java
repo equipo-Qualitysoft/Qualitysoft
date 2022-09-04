@@ -11,6 +11,7 @@ import java.util.List;
 public class Empresa {
     //atributos
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_empresa")
     private Long idEmpresa;
     @Column(name = "nombre")
@@ -21,11 +22,9 @@ public class Empresa {
     private String telefono;
     @Column(name = "direccion")
     private String direccion;
-    @OneToMany
-    @JoinColumn(name = "usuario_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
     private List<Usuario> usuarios;
-    @OneToMany
-    @JoinColumn(name = "movimiento_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMovimiento")
     private List<MovimientoDinero> movimientos;
     @Column(name = "fecha")
     private LocalDate fecha;
