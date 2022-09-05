@@ -11,11 +11,13 @@ import java.util.List;
 public class Empresa {
     //atributos
     @Id
+    //Se coloca que el id sea autoincrementable, en unos de los Restcontroller de la Empresa es id para empresas
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_empresa")
     private Long idEmpresa;
     @Column(name = "nombre")
     private String nombre;
-    @Column(name = "nit")
+    @Column(name = "nit",unique = true)
     private String nit;
     @Column(name = "telefono")
     private String telefono;
