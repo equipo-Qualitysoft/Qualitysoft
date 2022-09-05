@@ -1,7 +1,6 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades;
 
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.Util.EnumRol;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -66,7 +65,7 @@ public class Usuario {
     }
 
     public void setMovimientos(List<MovimientoDinero> movimientos) {
-        System.out.println("FALTA IMPLEMENTAR METODO");
+        System.out.println("FALTA IMPLEMENTAR METODO***");
         this.movimientos = movimientos;
     }
 }
