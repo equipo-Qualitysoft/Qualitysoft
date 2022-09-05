@@ -31,13 +31,11 @@ public class Usuario {
     @ManyToOne(optional = false)
     @JoinColumn(name = "empresa")
     private Empresa empresa;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMovimiento")
-    private List<MovimientoDinero> movimientos;
     @Column(name = "fecha")
     private LocalDate fecha;
     public Usuario() {
     }
-    public Usuario(String nombre, String imagen, String correo, String telefono, String clave, EnumRol rol, Empresa empresa, List<MovimientoDinero> movimientos) {
+    public Usuario(String nombre, String imagen, String correo, String telefono, String clave, EnumRol rol, Empresa empresa) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.correo = correo;
@@ -45,7 +43,12 @@ public class Usuario {
         this.clave = clave;
         this.rol = rol;
         this.empresa = empresa;
-        this.movimientos = movimientos;
         this.fecha = LocalDate.now();
     }
+    public List<MovimientoDinero> GetMovimientosByUsuario() {
+        System.out.println("Implementar metodo - buscar movimientos por usuario");
+        return null;
+    }
+
+
 }

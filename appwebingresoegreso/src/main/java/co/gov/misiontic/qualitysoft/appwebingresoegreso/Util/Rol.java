@@ -13,7 +13,7 @@
 //    //@OneToOne
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private int idRol;
+//    private Integer idRol;
 //    private String descripcion;
 //    Rol(String descripcion) {
 //        this.idRol = ordinal();

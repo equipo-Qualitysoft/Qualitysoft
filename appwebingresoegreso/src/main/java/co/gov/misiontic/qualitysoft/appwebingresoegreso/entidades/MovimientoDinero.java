@@ -19,9 +19,6 @@ public class MovimientoDinero {
     @ManyToOne (optional = false)
     @JoinColumn(name = "usuario")
     private Usuario usuario;
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "empresa")
-    private Empresa empresa;
     @Column(name = "fecha")
     private LocalDate fecha;
     public MovimientoDinero() {
@@ -30,8 +27,10 @@ public class MovimientoDinero {
         this.concepto = concepto;
         this.monto = monto;
         this.usuario = usuario;
-        this.empresa = usuario.getEmpresa();
         this.fecha = LocalDate.now();
+    }
+    public Empresa getEmpresa() {
+        return usuario.getEmpresa();
     }
 
 }

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity @Data
 @Table(name="empresas")
-public class Empresa {
+public class Empresa  {
     //atributos
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -22,22 +22,26 @@ public class Empresa {
     private String telefono;
     @Column(name = "direccion")
     private String direccion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idUsuario")
-    private List<Usuario> usuarios;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMovimiento")
-    private List<MovimientoDinero> movimientos;
     @Column(name = "fecha")
     private LocalDate fecha;
     public Empresa() {
     }
-    public Empresa(String nombre, String nit, String telefono, String direccion, List<Usuario> usuarios, List<MovimientoDinero> movimientos) {
+    public Empresa(String nombre, String nit, String telefono, String direccion) {
         this.nombre = nombre;
         this.nit = nit;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.usuarios = usuarios;
-        this.movimientos = movimientos;
         this.fecha = LocalDate.now();;
+    }
+
+    public List<Usuario> getUsuariosByEmpresa() {
+        System.out.println("Implementar metodo - buscar usuarios por empresa");
+        return null;
+    }
+
+    public List<MovimientoDinero> getMovimientosByEmpresa() {
+        System.out.println("Implementar metodo - buscar moviwientos por empresa");
+        return null;
     }
 }
 
