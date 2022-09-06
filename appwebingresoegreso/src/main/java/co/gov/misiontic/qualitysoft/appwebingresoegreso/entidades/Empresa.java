@@ -23,7 +23,7 @@ public class Empresa {
     @Setter @Getter
     @Column(name = "nombre")
     private String nombre;
-    
+
     @Setter @Getter
     @Column(name = "nit")
 
