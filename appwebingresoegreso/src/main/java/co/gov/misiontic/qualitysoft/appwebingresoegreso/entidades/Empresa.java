@@ -14,14 +14,19 @@ public class Empresa {
     //atributos
     @Setter @Getter
     @Id
+
+    //Se coloca que el id sea autoincrementable, en unos de los Restcontroller de la Empresa es id para empresas
+
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_empresa")
     private Long idEmpresa;
     @Setter @Getter
     @Column(name = "nombre")
     private String nombre;
+
     @Setter @Getter
     @Column(name = "nit")
+
     private String nit;
     @Setter @Getter
     @Column(name = "telefono")
