@@ -16,11 +16,11 @@ public class MovimientoDinero {
     private String concepto;
     @Column(name = "monto")
     private float monto;
-    @ManyToOne (optional = false)
-    @JoinColumn(name = "usuario")
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
     private Usuario usuario;
-    @ManyToOne(optional = true)
-    @JoinColumn(name = "empresa")
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
     private Empresa empresa;
     @Column(name = "fecha")
     private LocalDate fecha;

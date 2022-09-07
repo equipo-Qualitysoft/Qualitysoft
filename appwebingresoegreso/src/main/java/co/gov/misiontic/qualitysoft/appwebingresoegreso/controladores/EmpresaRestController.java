@@ -11,7 +11,7 @@ import java.util.List;
 //etiquetas base para la creación de los controladores
 
 @RestController
-@RequestMapping("/api")
+//@RequestMapping("/api")
 
 
 public class EmpresaRestController {
