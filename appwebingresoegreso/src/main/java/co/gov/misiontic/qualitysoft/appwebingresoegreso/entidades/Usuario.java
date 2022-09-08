@@ -1,11 +1,12 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades;
 
-import co.gov.misiontic.qualitysoft.appwebingresoegreso.Util.EnumRol;
+import co.gov.misiontic.qualitysoft.appwebingresoegreso.util.EnumRol;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @Entity
@@ -13,13 +14,12 @@ import java.util.List;
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id_usuario")
     private Long idUsuario;
     @Column(name = "nombre")
     private String nombre;
     @Column(name = "imagen")
     private String imagen;
-    @Column(name = "correo")
+    @Column(name = "correo", unique = true)
     private String correo;
     @Column(name = "telefono")
     private String telefono;
@@ -30,11 +30,9 @@ public class Usuario {
     @Enumerated(value=EnumType.STRING)
     private EnumRol rol;
     @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
-    @OneToMany
-    @JoinColumn(name = "movimiento_id")
-    private List<MovimientoDinero> movimientos;
     @Column(name = "fecha")
     private LocalDate fecha;
     public Usuario() {
@@ -49,4 +47,6 @@ public class Usuario {
         this.empresa = empresa;
         this.fecha = LocalDate.now();
     }
+
+
 }
