@@ -19,11 +19,11 @@ public interface IEmpresaServicio {
 
     //para los metodos de la segunda parte del sprint 3
 
-    public Empresa EncontrarId(int id);
+    public Empresa EncontrarId(Long id);
 
-    public Empresa UpdateEmpresa (int id, Empresa empresa);
+    public Empresa UpdateEmpresa (Long id, Empresa empresa);
 
-    public void deleteEmpresa ( int id);
+    public void deleteEmpresa ( Long id);
 
 
 
