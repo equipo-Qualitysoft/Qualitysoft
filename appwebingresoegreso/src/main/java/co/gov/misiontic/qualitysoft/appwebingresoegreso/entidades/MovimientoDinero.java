@@ -22,30 +22,25 @@ public class MovimientoDinero {
     private String concepto;
     @Column(name = "monto")
     private float monto;
+    @Column(name = "fecha")
+    private LocalDate fecha;
+
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
+
     @ManyToOne
     @JoinColumn(name = "empresa_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Empresa empresa;
-
-    @Column(name = "fecha")
-    private LocalDate fecha;
-
     public MovimientoDinero() {
     }
     public MovimientoDinero(String concepto, float monto, Usuario usuario) {
         this.concepto = concepto;
         this.monto = monto;
         this.usuario = usuario;
-        this.empresa = getEmpresa(usuario);
+        this.empresa = usuario.getEmpresa();// <== Implementar --> guardar la empresa a la que pertenece el usuario que crea el movimiento
         this.fecha = LocalDate.now();
-    }
-
-    public Empresa getEmpresa(Usuario usuario) {
-        Usuario usuario1 = new UsuarioService().getUsuarioById(usuario.getIdUsuario());
-        return usuario1.getEmpresa();
     }
 }
