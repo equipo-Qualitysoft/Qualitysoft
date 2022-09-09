@@ -29,12 +29,12 @@ public class Usuario {
     @Column(name = "rol", nullable = false)
     @Enumerated(value=EnumType.STRING)
     private EnumRol rol;
+    @Column(name = "fecha")
+    private LocalDate fecha;
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
-    @Column(name = "fecha")
-    private LocalDate fecha;
     public Usuario() {
     }
     public Usuario(String nombre, String imagen, String correo, String telefono, String clave, EnumRol rol, Empresa empresa ) {

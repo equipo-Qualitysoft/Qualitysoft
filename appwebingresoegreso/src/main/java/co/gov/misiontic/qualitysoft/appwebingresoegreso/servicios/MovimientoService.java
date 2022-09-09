@@ -9,34 +9,59 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class MovimientoService {
+public class MovimientoService implements IMovimientoService {
     @Autowired
     private MovimientoRepository movimientoRepository;
     @Autowired
     private EmpresaRepository empresaRepository;
     @Autowired
     private EmpresaServicio empresaServicio;
+
     public MovimientoService(MovimientoRepository movimientoRepository) {
-        this.movimientoRepository= movimientoRepository;
+        this.movimientoRepository = movimientoRepository;
     }
+
     // RETORNA TODOS LOS MOVIMIENTOS
-    public List<MovimientoDinero> getMovimientoDineroList(){
+    @Override
+    public List<MovimientoDinero> getMovimientoDineroList() {
         return movimientoRepository.findAll();
     }
 
     // RETORNA TODOS LOS MOVIMIENTOS POR EMPRESA
-    public List<MovimientoDinero> getMovimientoDineroListByEmpresa(Long idEmpresa){
+    @Override
+    public List<MovimientoDinero> getMovimientoDineroListByEmpresa(Long idEmpresa) {
         Empresa empresa = empresaServicio.EncontrarId(idEmpresa);
         List<MovimientoDinero> movimientos = new ArrayList<>();
-        for (MovimientoDinero movimiento:getMovimientoDineroList()) {
+        for (MovimientoDinero movimiento : getMovimientoDineroList()) {
             if (movimiento.getUsuario().getEmpresa().equals(empresa)) {
                 movimientos.add(movimiento);
             }
         }
         return movimientos;
     }
-}
+    @Override
+    public MovimientoDinero getMovimientoById(Long idEmpresa, Long idMovimiento) {
+        return movimientoRepository.findById(idMovimiento).get();
+    }
 
+    @Override
+    public MovimientoDinero createMovimiento(Long idEmpresa, MovimientoDinero nuevoMovimiento) {
+        return movimientoRepository.save(nuevoMovimiento);
+    }
+
+    @Override
+    public MovimientoDinero updateMovimiento(Long idEmpresa, Long idMovimiento, MovimientoDinero movimiento) {
+        return movimientoRepository.save(movimiento);
+    }
+
+    @Override
+    public Boolean deleteMovimiento(Long idEmpresa, Long idMovimiento) {
+        if (movimientoRepository.findById(idMovimiento).isPresent()) {
+            movimientoRepository.deleteById(idMovimiento);
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+}
