@@ -27,13 +27,13 @@ public class EmpresaServicio implements IEmpresaServicio {
     }
 
     @Override
-    public Empresa EncontrarId(int id) {
-        Optional<Empresa> empresa = empresaRepository.findById((long)id);
+    public Empresa EncontrarId(Long id) {
+        Optional<Empresa> empresa = empresaRepository.findById(id);
         return empresa.get();
     }
 
     @Override
-    public Empresa UpdateEmpresa(int id, Empresa empresa) {
+    public Empresa UpdateEmpresa(Long id, Empresa empresa) {
 
         Empresa putEmpresa = empresaRepository.save(empresa);
         return putEmpresa;
@@ -41,8 +41,8 @@ public class EmpresaServicio implements IEmpresaServicio {
     }
 
     @Override
-    public void deleteEmpresa(int id) {
-        empresaRepository.deleteById((long) id);
+    public void deleteEmpresa(Long id) {
+        empresaRepository.deleteById(id);
 
     }
 }

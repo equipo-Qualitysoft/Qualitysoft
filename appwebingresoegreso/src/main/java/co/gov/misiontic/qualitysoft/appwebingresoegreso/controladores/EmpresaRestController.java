@@ -11,7 +11,7 @@ import java.util.List;
 //etiquetas base para la creación de los controladores
 
 @RestController
-@RequestMapping("/api")
+//@RequestMapping("/api")
 
 
 public class EmpresaRestController {
@@ -53,7 +53,7 @@ public class EmpresaRestController {
     //Se crea el Apirest Get
     @GetMapping("/enterprises/{id}")
 
-    public Empresa EncontrarId (@PathVariable int id){
+    public Empresa EncontrarId (@PathVariable Long id){
 
         return empresaServicio.EncontrarId(id);
 
@@ -62,7 +62,7 @@ public class EmpresaRestController {
 
     //se crea el Apirest Update
     @PutMapping("/enterprises/{id}")
-    public Empresa UpdateEmpresa (@PathVariable int id, @RequestBody Empresa empresa){
+    public Empresa UpdateEmpresa (@PathVariable Long id, @RequestBody Empresa empresa){
 
         return empresaServicio.UpdateEmpresa(id, empresa);
 
@@ -71,7 +71,7 @@ public class EmpresaRestController {
     //se crea el Apirest Delete
     @DeleteMapping("/enterprises/{id}")
     //el @Patchvariable me hace la busqueda
-    public void deleteEmpresa (@PathVariable int id){
+    public void deleteEmpresa (@PathVariable Long id){
 
         empresaServicio.deleteEmpresa(id);
 

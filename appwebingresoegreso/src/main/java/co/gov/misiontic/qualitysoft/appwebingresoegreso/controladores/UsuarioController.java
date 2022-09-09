@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -44,7 +43,6 @@ public class UsuarioController {
         user.setEmpresa(usuario.getEmpresa());
         user.setImagen(usuario.getImagen());
         user.setTelefono(usuario.getTelefono());
-        user.setMovimientos(usuario.getMovimientos());
         user.setRol(usuario.getRol());
         return usuarioService.saveOrUpdateUsuario(user);
     }
