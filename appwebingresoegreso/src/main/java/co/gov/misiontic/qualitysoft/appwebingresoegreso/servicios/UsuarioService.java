@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioService {
+public class UsuarioService implements IUsarioService{
 
     @Autowired
     UsuarioRepository usuarioRepository;
@@ -21,21 +21,21 @@ public class UsuarioService {
         return usuarioList;
     }
 
-    public Usuario getUsuarioById(Long id){
-        return usuarioRepository.findById(id).get();
+    public Usuario getUsuarioById(Long idUsuario){
+        return usuarioRepository.findById(idUsuario).get();
     }
 
-    public ArrayList<Usuario> consultarPorEmpresa(Long id){
-        return usuarioRepository.findByusuario(id);
+    public ArrayList<Usuario> consultarPorEmpresa(Long idEmpresa){
+        return usuarioRepository.findByusuario(idEmpresa);
     }
 
     public Usuario saveOrUpdateUsuario(Usuario usuario){
         return usuarioRepository.save(usuario);
     }
 
-    public boolean deleteUsuario(Long id){
-        usuarioRepository.deleteById(id);
-        if (this.usuarioRepository.findById(id).isPresent()){
+    public boolean deleteUsuario(Long idUsuario){
+        usuarioRepository.deleteById(idUsuario);
+        if (this.usuarioRepository.findById(idUsuario).isPresent()){
             return false;
         }
         return true;

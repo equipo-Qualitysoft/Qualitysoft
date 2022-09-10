@@ -31,7 +31,7 @@ public class MovimientoController {
     }
     @GetMapping("/enterprises/{idEmpresa}/movements/{idMovimiento}")
     public ResponseEntity<MovimientoDinero> movimientoDineroById(@PathVariable("idEmpresa") Long idEmpresa, @PathVariable("idMovimiento") Long idMovimiento){
-        MovimientoDinero movimientoDinero = this.movimientoService.getMovimientoById(idEmpresa,idMovimiento);
+        MovimientoDinero movimientoDinero = this.movimientoService.getMovimientoById(idMovimiento);
         if(movimientoDinero == null){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -45,10 +45,10 @@ public class MovimientoController {
     @ResponseStatus(HttpStatus.OK)
     @PatchMapping("/enterprises/{idEmpresa}/movements/{idMovimiento}")
     public MovimientoDinero updateMovimientoDinero(@PathVariable("idEmpresa") Long idEmpresa,@PathVariable("idMovimiento") Long idMovimiento,@RequestBody MovimientoDinero movimientoDinero){
-        return this.movimientoService.updateMovimiento(idEmpresa, idMovimiento, movimientoDinero);
+        return this.movimientoService.updateMovimiento(movimientoDinero);
     }
     @DeleteMapping("/enterprises/{idEmpresa}/movements/{idMovimiento}")
     public ResponseEntity<Boolean> deleteMovimientoDinero(@PathVariable("idEmpresa") Long idEmpresa, @PathVariable("idMovimiento") Long idMovimiento){
-        return new ResponseEntity<Boolean>(this.movimientoService.deleteMovimiento(idEmpresa, idMovimiento), HttpStatus.OK);
+        return new ResponseEntity<Boolean>(this.movimientoService.deleteMovimiento(idMovimiento), HttpStatus.OK);
     }
 }
