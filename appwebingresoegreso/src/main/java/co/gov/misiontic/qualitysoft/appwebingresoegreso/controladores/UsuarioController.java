@@ -3,6 +3,7 @@ package co.gov.misiontic.qualitysoft.appwebingresoegreso.controladores;
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Usuario;
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ public class UsuarioController {
     @Autowired
     UsuarioService usuarioService;
 
+    //@ResponseStatus(HttpStatus.OK)
     @GetMapping("/users")
     public List<Usuario> verUsuario(){
         return usuarioService.getAllUsuario();
@@ -23,19 +25,19 @@ public class UsuarioController {
         return this.usuarioService.saveOrUpdateUsuario(user);
     }
 
-    @GetMapping(path = "users/{id}")
-    public Usuario usuarioPorID(@PathVariable("id") Long id){
-        return this.usuarioService.getUsuarioById(id);
+    @GetMapping(path = "users/{idUsuario}")
+    public Usuario usuarioPorID(@PathVariable("idUsuario") Long idUsuario){
+        return this.usuarioService.getUsuarioById(idUsuario);
     }
 
-    @GetMapping("enterprises/{id}/users")
-    public ArrayList<Usuario> verUsuarioPorEmpresa(@PathVariable("id") Long id){
-        return this.usuarioService.consultarPorEmpresa(id);
+    @GetMapping("enterprises/{idEmpresa}/users")
+    public ArrayList<Usuario> verUsuarioPorEmpresa(@PathVariable("idEmpresa") Long idEmpresa){
+        return this.usuarioService.consultarPorEmpresa(idEmpresa);
     }
 
-    @PatchMapping("/users/{id}")
-    public Usuario actualizarUsuario(@PathVariable("id") Long id,@RequestBody Usuario usuario){
-        Usuario user=usuarioService.getUsuarioById(id);
+    @PatchMapping("/users/{idUsuario}")
+    public Usuario actualizarUsuario(@PathVariable("idUsuario") Long idUsuario,@RequestBody Usuario usuario){
+        Usuario user=usuarioService.getUsuarioById(idUsuario);
         user.setNombre(usuario.getNombre());
         user.setCorreo(usuario.getCorreo());
         user.setEmpresa(usuario.getEmpresa());
@@ -45,13 +47,13 @@ public class UsuarioController {
         return usuarioService.saveOrUpdateUsuario(user);
     }
 
-    @DeleteMapping("/users/{id}")
-    public String DeleteUsuario(@PathVariable("id") Long id){
-        boolean respuesta=usuarioService.deleteUsuario(id);
+    @DeleteMapping("/users/{idUsuario}")
+    public String DeleteUsuario(@PathVariable("idUsuario") Long idUsuario){
+        boolean respuesta=usuarioService.deleteUsuario(idUsuario);
         if (respuesta){
-            return "Se pudo eliminar correctamente el empleado con id "+id;
+            return "Se pudo eliminar correctamente el Usuario con id "+idUsuario;
         }
-        return "No se puedo eliminar correctamente el empleado con id "+id;
+        return "No se puedo eliminar correctamente el Usuario con id "+idUsuario;
     }
 
 }
