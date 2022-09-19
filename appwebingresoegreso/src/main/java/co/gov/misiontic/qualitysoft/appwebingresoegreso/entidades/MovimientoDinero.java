@@ -1,63 +1,46 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades;
 
+import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.EmpresaServicio;
+import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.UsuarioService;
+import lombok.Data;
+import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+
+@Data
+@Entity
+@Table(name = "movimientos")
+
 public class MovimientoDinero {
-    private double monto;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long idMovimiento;
+    @Column(name = "concepto")
     private String concepto;
-    private Empleado usuario;
+    @Column(name = "monto")
+    private float monto;
+    @Column(name = "fecha")
+    private LocalDate fecha;
 
-    // Definition of Done
-    // Es posible crear una nueva instancia de la clase MovimientoDinero
-    public MovimientoDinero(double monto, String concepto, Empleado usuario) {
-        this.setMonto(monto);
-        this.setConcepto(concepto);
-        this.usuario = usuario;
-    }
+    @ManyToOne
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
 
-    // Definition of Done
-    // Es posible leer el monto del movimiento
-    public double getMonto() {
-        return monto;
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Empresa empresa;
+    public MovimientoDinero() {
     }
-
-    // Definition of Done
-    // Es posible modificar el monto del movimiento
-    public void setMonto(double monto) {
-        this.monto = monto;
-    }
-
-    // Definition of Done
-    // Es posible crear montos positivos y negativos
-    public void crearMonto(double monto, boolean egreso){
-        if (!egreso)
-            this.monto += monto;  // Ingreso
-        else
-            this.monto -= monto;  // Egreso
-    }
-
-    // Definition of Done
-    // Es posible leer el concepto del movimiento
-    public String getConcepto() {
-        return concepto;
-    }
-    // Definition of Done
-    // Es posible modificar el concepto del movimiento
-    public void setConcepto(String concepto) {
+    public MovimientoDinero(String concepto, float monto, Usuario usuario) {
         this.concepto = concepto;
-    }
-
-    // Definition of Done
-    // Es posible definir que usuario(empleado) fue encargado del registro el movimiento
-    public Empleado getUsuario() {
-        return usuario;
-    }
-
-    @Override
-    public String toString() {
-        return "MovimientoDinero{" +
-                "monto=" + monto +
-                ", concepto='" + concepto + '\'' +
-                ", usuario=" + usuario +
-                '}';
+        this.monto = monto;
+        this.usuario = usuario;
+        this.empresa = usuario.getEmpresa();// <== Implementar --> guardar la empresa a la que pertenece el usuario que crea el movimiento
+        this.fecha = LocalDate.now();
     }
 }
-
