@@ -29,8 +29,15 @@ public class Usuario {
     @Column(name = "rol", nullable = false)
     @Enumerated(value=EnumType.STRING)
     private EnumRol rol;
-    @Column(name = "fecha")
-    private LocalDate fecha;
+    @Column(name = "fecha_ingreso")
+    private LocalDate fechaIngreso;
+
+    @Column(name = "fecha_salida")
+    private LocalDate fechaSalida;
+
+    @Column(name = "estado")
+    private Boolean estado;
+
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "empresa_id")
@@ -45,7 +52,8 @@ public class Usuario {
         this.clave = clave;
         this.rol = rol;
         this.empresa = empresa;
-        this.fecha = LocalDate.now();
+        this.estado = true;
+        this.fechaIngreso = LocalDate.now();
     }
 
 
