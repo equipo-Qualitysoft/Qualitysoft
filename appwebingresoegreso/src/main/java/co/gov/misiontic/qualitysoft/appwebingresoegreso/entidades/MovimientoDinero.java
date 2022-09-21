@@ -22,6 +22,7 @@ public class MovimientoDinero {
     private String concepto;
     @Column(name = "monto")
     private float monto;
+
     @Column(name = "fecha")
     private LocalDate fecha;
 
@@ -34,6 +35,17 @@ public class MovimientoDinero {
     @JoinColumn(name = "empresa_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Empresa empresa;
+
+    @ManyToOne
+    @JoinColumn(name = "articulo_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private Articulo articulo;
+
+    @ManyToOne
+    @JoinColumn(name = "cp_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    private ClienteProveedor clienteProveedor;
+
     public MovimientoDinero() {
     }
     public MovimientoDinero(String concepto, float monto, Usuario usuario) {

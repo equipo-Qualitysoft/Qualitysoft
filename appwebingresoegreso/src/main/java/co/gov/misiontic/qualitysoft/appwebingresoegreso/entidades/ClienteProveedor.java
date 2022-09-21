@@ -1,46 +1,37 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades;
 
 import lombok.Data;
-import org.hibernate.Hibernate;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Data
 @Entity
-@Table(name="empresas")
-public class Empresa {
-    //atributos
+@Table(name = "clientes_proveedores")
+public class ClienteProveedor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idEmpresa;
+    private Long idClienteProveedor;
     @Column(name = "nombre")
     private String nombre;
-    @Column(name = "nit", unique = true)
-    private String nit;
+    @Column(name = "documento", unique = true)
+    private String documento;
     @Column(name = "telefono")
     private String telefono;
     @Column(name = "direccion")
     private String direccion;
-    @Column(name = "fecha")
-    private LocalDate fecha;
+    @Column(name = "tipo_cp")
+    private boolean tipoCP; //true = cliente, false = proveedor
 
-    public Empresa() {
+    public ClienteProveedor() {
     }
-    public Empresa(String nombre, String nit, String telefono, String direccion) {
+    public ClienteProveedor(String nombre, String documento, String telefono, String direccion, boolean tipoCP) {
         this.nombre = nombre;
-        this.nit = nit;
+        this.documento = documento;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.fecha = LocalDate.now();;
+        this.tipoCP = tipoCP;
     }
-
-
-
 }
-
