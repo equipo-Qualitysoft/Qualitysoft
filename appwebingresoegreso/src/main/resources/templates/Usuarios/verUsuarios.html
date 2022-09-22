@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lista de Usuarios</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <style>
+    a{
+    color:white;
+    }
+    a:hover {
+    color: black;
+    text-decoration:none;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+    <p th:inline="text" class="text-right">User: [[${#httpServletRequest.remoteUser}]]</p> <!--Muestra el nombre del usuario que esta operando el sistema-->
+    <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
+    <h1> Lista de Usuarios</h1>
+
+    <!--Dibujamos la tabla-->
+    <br><table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Imagen</th>
+        <th>Correo</th>
+        <th>Telefono</th>
+        <th>Clave</th>
+        <th>Fecha de Ingreso</th>
+        <th>Fecha de Salida</th>
+        <th>Estado</th>
+        <th>Empresa</th>
+        <th>Rol</th>
+        <th>Movimiento</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+
+    </tr>
+
+    <!--Llenamos la tabla dibujada-->
+    <!--En nuestro controller, creamos en viewUsuario un modelo con un atributo llamado usuarioslist donde esta guardada la lista de todas los usuarios-->
+    <tr th:each="usuario : ${usuarioslist}">
+        <td th:text="${usuario.idUsuario}"></td>
+        <td th:text="${usuario.nombre}"></td>
+        <td th:text="${usuario.imagen}"></td>
+        <td th:text="${usuario.correo}"></td>
+        <td th:text="${usuario.telefono}"></td>
+        <td th:text="${usuario.clave}"></td>
+        <td th:text="${usuario.fechaingreso}"></td>
+        <td th:text="${usuario.fechasalida}"></td>
+        <td th:text="${usuario.estado}"></td>
+        <td th:text="${usuario.empresa.nombre}"></td>
+        <td th:text="${usuario.rol}"></td>
+        <!-- Pendiente euler crear controldaror segun mi ruta para consultar movimiento por empleado -->
+        <td><button type="button" class="btn btn-infor"><a th:href="@{/Usuarios/{idUsuario}/Movimientos(id=${usuario.idUsuario})}">Ver</a></button></td>
+        <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarUsuario/{id}(id=${usuario.id})}">Editar</a></button></td>
+        <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarUsuario/{id}(id=${usuario.id})}">Eliminar</a></button></td>
+    </tr>
+</table>
+
+    <!-- boton que sirve para agregar nuevos usuarios -->
+    <button type="button" class="btn btn-info"><a th:href="@{/AgregarUsuario}">Agregar Nuevo Usuario</a></button>
+    <br><br>
+    <!-- boton que me lleva a la lista de empresas-->
+    <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpresas}">Ver lista de Empresas</a></button>
+</div>
+
+<script th:inline="javascript">
+    window.onload=function(){
+
+        var msg= [[${mensaje}]];
+        if (msg == "saveOK"){
+            Command : toastr["success"]("Usuario registrado con éxito!")
+            }
+        else if (msg == "updateOK"){
+            Command : toastr["success"]("Usuario actualizado con éxito!")
+        }
+        else if (msg == "deleteOK"){
+            Command : toastr["error"]("Usuario eliminado con éxito!")
+        }
+        else if (msg == "deleteError"){
+            Command : toastr["error"]("El usuario no ha sido eliminado!")
+        }
+        toastr.options={
+            "positionClass": "toast-top-right",
+            "showDuration":"300",
+            "showMethod":"fadeIn",
+            "hideMethod":"fadeOut",
+        }
+
+    }
+</script>
+</body>
+</html>

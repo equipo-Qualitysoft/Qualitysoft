@@ -21,16 +21,20 @@ public class UsuarioService implements IUsarioService{
         return usuarioList;
     }
 
-    public Usuario getUsuarioById(Long idUsuario){
-        return usuarioRepository.findById(idUsuario).get();
+    public Optional<Usuario> getUsuarioById(Long idUsuario){
+        return usuarioRepository.findById(idUsuario);
     }
 
     public ArrayList<Usuario> consultarPorEmpresa(Long idEmpresa){
         return usuarioRepository.findByusuario(idEmpresa);
     }
 
-    public Usuario saveOrUpdateUsuario(Usuario usuario){
-        return usuarioRepository.save(usuario);
+    public boolean saveOrUpdateUsuario(Usuario usuario1){
+        Usuario user=usuarioRepository.save(usuario1);
+        if (usuarioRepository.findById(user.getIdUsuario())!=null){
+            return true;
+        }
+        return false;
     }
 
     public boolean deleteUsuario(Long idUsuario){
@@ -40,5 +44,4 @@ public class UsuarioService implements IUsarioService{
         }
         return true;
     }
-
 }
