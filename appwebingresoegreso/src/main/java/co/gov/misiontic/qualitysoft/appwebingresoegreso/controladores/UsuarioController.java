@@ -24,7 +24,7 @@ public class UsuarioController {
         List<Usuario> listaUsuarios=usuarioService.getAllUsuario();
         model.addAttribute("usuarioslist",listaUsuarios);
         model.addAttribute("mensaje",mensaje);
-        return "verUsuarios";
+        return "Usuarios/verUsuarios";
     }
 
     @GetMapping("/AgregarUsuario")
@@ -34,7 +34,7 @@ public class UsuarioController {
         model.addAttribute("mensaje",mensaje);
         //List<Empresa> listaEmpresas=empresaServicio.getAllEmpresas //confirmar con nicolas
         //model.addAttribute("empresaslist", listaEmpresas);
-        return "agregarUsuarios";
+        return "Usuarios/agregarUsuarios";
     }
     @PostMapping("/GuardarUsuario")
     public String guardarUsuario(Usuario usuario1, RedirectAttributes redirectAttributes){
@@ -53,7 +53,7 @@ public class UsuarioController {
         model.addAttribute("mensaje", mensaje);
         //List<Empresa> listaEmpresas=empresaServicio.getAllEmpresas //confirmar con nicolas
         //model.addAttribute("empresaslist", listaEmpresas);
-        return "editarUsuarios";
+        return "Usuarios/editarUsuarios";
     }
 
     @PostMapping("/ActualizarUsuario")
@@ -80,6 +80,6 @@ public class UsuarioController {
     public String verUsuariosPorEmpresa(@PathVariable("idEmpresa") Long idEmpresa, Model model){
         List<Usuario> listaUsuarios=usuarioService.consultarPorEmpresa(idEmpresa);
         model.addAttribute("usuarioslist",listaUsuarios);
-        return "verUsuarios";
+        return "Usuarios/verUsuarios";
     }
 }
