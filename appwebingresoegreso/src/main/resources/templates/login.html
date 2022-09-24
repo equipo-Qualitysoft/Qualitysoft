@@ -47,7 +47,7 @@
     <div class="col-xs-12 col-sm-4 col-sm-offset-4 login-box">
         <div class="login-header">
             <img src="https://i.pinimg.com/736x/80/ad/70/80ad70714504b3c89213e144c5dffae6.jpg"/>
-            <h3>Welcome</h3>
+            <h3>Bienvenido</h3>
             <h5>PLEASE LOG IN</h5>
         </div>
         <div id="error-message" class="alert alert-danger"></div>
@@ -66,7 +66,7 @@
                         type="password"
                         class="form-control"
                         id="password"
-                        placeholder="Enter your password">
+                        placeholder="Entre su password">
             </div>
             <div class="captcha-container form-group"></div>
             <button
@@ -74,19 +74,6 @@
                     id="btn-login"
                     class="btn btn-primary btn-block">
                 Log In
-            </button>
-            <button
-                    type="button"
-                    id="btn-signup"
-                    class="btn btn-default btn-block">
-                Sign Up
-            </button>
-            <hr>
-            <button
-                    type="button"
-                    id="btn-google"
-                    class="btn btn-default btn-danger btn-block">
-                Log In with Google
             </button>
         </form>
     </div>
@@ -153,41 +140,13 @@
             });
         }
 
-        function signup() {
-            var button = this;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
-
-            button.disabled = true;
-            webAuth.redirect.signupAndLogin({
-                connection: databaseConnection,
-                email: email,
-                password: password,
-                captcha: captcha.getValue()
-            }, function(err) {
-                if (err) displayError(err);
-                button.disabled = false;
-            });
-        }
-
-        function loginWithGoogle() {
-            webAuth.authorize({
-                connection: 'google-oauth2'
-            }, function(err) {
-                if (err) displayError(err);
-            });
-        }
-
         function displayError(err) {
             captcha.reload();
             var errorMessage = document.getElementById('error-message');
             errorMessage.innerHTML = err.policy || err.description;
             errorMessage.style.display = 'block';
         }
-
         document.getElementById('btn-login').addEventListener('click', login);
-        document.getElementById('btn-google').addEventListener('click', loginWithGoogle);
-        document.getElementById('btn-signup').addEventListener('click', signup);
     });
 </script>
 </body>
