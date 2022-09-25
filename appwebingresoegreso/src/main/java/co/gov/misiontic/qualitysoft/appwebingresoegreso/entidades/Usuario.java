@@ -39,12 +39,22 @@ public class Usuario {
     @Column(name = "estado")
     private Boolean estado;
 
+//    @Column(name = "auth0id")
+//    private String auth0id;
+
     @ManyToOne
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JoinColumn(name = "empresa_id")
     private Empresa empresa;
     public Usuario() {
     }
+
+    public Usuario(  String correo,String imagen, String auth0id) {
+        this.correo = correo;
+        this.imagen = imagen;
+       // this.auth0id = auth0id;
+    }
+
     public Usuario(String nombre, String imagen, String correo, String telefono, String clave, EnumRol rol , Empresa empresa ) {
         this.nombre = nombre;
         this.imagen = imagen;

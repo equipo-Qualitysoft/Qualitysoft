@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -37,11 +38,30 @@ public class UsuarioService implements IUsarioService{
         return false;
     }
 
+    public Usuario  createUser(Usuario newUser){
+        return usuarioRepository.save(newUser);
+    }
+
     public boolean deleteUsuario(Long idUsuario){
         usuarioRepository.deleteById(idUsuario);
         if (this.usuarioRepository.findById(idUsuario).isPresent()){
             return false;
         }
         return true;
+    }
+
+    public Usuario getOrCreateUser(Map<String, Object> userData){
+        String email = (String) userData.get("email");
+        Usuario usuario = usuarioRepository.findByCorreo(email);
+        if(usuario == null){
+            String name = (String) userData.get("name");
+            String image = (String) userData.get("image");
+            String auth0id = (String) userData.get("sub");
+
+            Usuario newUser = new Usuario(email=email, image=image, auth0id= auth0id);
+            return createUser(newUser);
+        }
+        System.out.println(usuario.getCorreo());
+        return usuario;
     }
 }

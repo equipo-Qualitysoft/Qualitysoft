@@ -10,13 +10,6 @@
 </head>
 <body>
 <main>
-
-    <div sec:authorize="isAuthenticated()">
-        <h3 th:text="'Bienvenido ' + ${user.getEmail()}"> </h3>
-        <a th:href="@{/pagina2}" type="button" class="btn btn-primary btn-lg px-4 gap-3">Llevame a la aplicacion</a>
-
-    </div>
-
     <div class="px-4 py-5 my-5 text-center">
         <!--<img class="" src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-shadow.png" height="100"> -->
         <img src="img/shoes.jpg"class="d-block mx-auto mb-4" height="200" alt="Shoes" />
@@ -27,14 +20,13 @@
                 <!-- CAMBIAR LOGIN AQUI -->
                 <a th:href="@{oauth2/authorization/auth0}" type="button" class="btn btn-primary btn-lg px-4 gap-3">Iniciar Sesion</a>
                 <!--a href="/login" type="button" class="btn btn-primary btn-lg px-4 gap-3">Iniciar Sesion</a-->
-
             </div>
-            <button type="button" class="btn btn-outline-secondary btn-lg px-4">Saber mas</button>
             <div sec:authorize="isAuthenticated()">
-                <p>You are logged in!</p>
-                <a th:href="@{/logout}">Log Out</a>
+                <h3 th:text="'Bienvenido ' + ${profile.get('email')}">                </h3>
+                <a th:href="@{/tablero}" type="button" class="btn btn-primary btn-lg px-4 gap-3">Llevame a la aplicacion</a>
+                <a th:href="@{/logout}" type="button" class="btn btn-outline-secondary btn-lg px-4">Log Out</a>
+                <p>Tu estas logueado!</p>
             </div>
-        </div>
     </div>
 </main>
 
