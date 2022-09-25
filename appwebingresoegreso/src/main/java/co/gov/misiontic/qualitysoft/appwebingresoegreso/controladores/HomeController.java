@@ -21,7 +21,7 @@ public class HomeController {
             model.addAttribute("user", usuarioLogueado);
             //model.addAttribute("profile",  principal.getClaims());
         }
-        return "index1.html";
+        return "index.html";
     }
 
     @GetMapping("/tablero")

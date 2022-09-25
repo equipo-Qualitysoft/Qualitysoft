@@ -1,5 +1,5 @@
 <!doctype html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <!-- Required meta tags -->
@@ -24,7 +24,6 @@
 </head>
 
 <body>
-
     <div class="d-flex" id="content-wrapper">
 
         <!-- Sidebar -->
@@ -32,24 +31,6 @@
             <div class="logo">
                 <h4 class="text-light font-weight-bold mb-0">QualitySoft</h4>
             </div>
-            <div class="menu">
-                <a href="/tablero" class="d-block text-light p-3 border-0"><i class="icon ion-md-apps lead mr-2"></i>
-                    Home</a>
-
-                <a href="#" class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>
-                    Empresa</a>
-
-                <a href="#" class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>
-                    Usuarios</a>
-
-                <a th:href="@{/movimientos}" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
-                    Movimientos</a>
-                <a href="#" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
-                    Clientes Y Proveedores</a>
-                <a href="#" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
-                    Zapatos</a>
-                <a href="#" class="d-block text-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i>
-                    Salir</a>
             <div th:replace="fragments :: html_menu" >
             </div>
         </div>
@@ -75,10 +56,8 @@
                   <li class="nav-item dropdown">
                     <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button"
                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      <img src="assets/img/user-1.png" class="img-fluid rounded-circle avatar mr-2"
-                           alt="https://generated.photos/" />
-                    Viktor Grajales
-                    </a>
+                        Viktor Grajales
+                    </a>                   
                   </li>
                 </ul>
               </div>
@@ -92,23 +71,17 @@
               <section class="bg-light py-3">
                   <div class="container">
                       <div class="row">
-                          <div class="col-lg-9 col-md-8" sec:authorize="isAuthenticated()">
-                             <img th:src="${user.get('picture')}" th:attr="alt=${user.get('name')}"/>
-<!--                             <h2 class="font-weight-bold mb-0" th:text="'Bienvenido ' +  ${profile.get('name')}"></h2>-->
-                              <h2 class="font-weight-bold mb-0" th:text="'Bienvenido ' +  ${user.get('name') }"></h2>
-
-                              <p th:text="${user.get('email')}"></p>
-                             <a th:href="@{/logout}">Log Out</a>
-
-                              <!--h1 class="font-weight-bold mb-0" Bienvenido Viktor</h1-->
-                             <p class="lead text-muted">Revisa la última información</p>
                           <div class="col-lg-9 col-md-8">
-                            <h1 class="font-weight-bold mb-0">Camina con Estilo</h1>
-                            <p class="lead text-muted">ZAPATERIA</p>
-                          </div>
+                            <h1 class="font-weight-bold mb-0">Usuarios</h1>
+                            <p class="lead text-muted">Lista de Usuarios</p>
+                          </div>                         
                       </div>
                   </div>
               </section>
+
+            <section th:replace="fragments :: botones_usuarios" >
+
+            </section>
 
 
               <section>
@@ -116,7 +89,48 @@
                       <div class="row">
                           <div class="col-lg-12 my-3">
                               <!-- TABLAS Y FORMULARIOS -->
-                                
+                              <br><table class="table table-bordered">
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Nombre</th>
+                                  <th>Imagen</th>
+                                  <th>Correo</th>
+                                  <th>Teléfono</th>
+                                  <th>Clave</th>
+                                  <th>Rol</th>
+                                  <th>Empresa</th>
+                                  <th>Estado</th>
+                                  <!-- <th>Fecha de Ingreso</th> pendiente -->
+                                  <!-- <th>Fecha de Salida</th>-->
+                                  <th>Movimientos</th>
+                                  <th>Editar</th>
+                                  <th>Eliminar</th>
+                              </tr>
+                              <tr th:each="usuario : ${usuarioslist}">
+                                  <td th:text="${usuario.idUsuario}"></td>
+                                  <td th:text="${usuario.nombre}"></td>
+                                  <td th:text="${usuario.imagen}"></td>
+                                  <td th:text="${usuario.correo}"></td>
+                                  <td th:text="${usuario.telefono}"></td>
+                                  <td th:text="${usuario.clave}"></td>
+                                  <td th:text="${usuario.rol}"></td>
+                                  <td th:text="${usuario.empresa.nombre}"></td>
+                                  <td th:text="${usuario.estado}"></td>
+                                  <!-- <td th:text="${usuario.fecha_ingreso}"></td>-->
+                                  <!-- <td th:text="${usuario.fecha_salida}"></td>-->
+                                  <!-- Pendiente euler crear controldaror segun mi ruta para consultar movimiento por empleado -->
+                                  <td><button type="button" class="btn btn-infor"><a th:href="@{/Usuarios/{idUsuario}/Movimientos(id=${usuario.idUsuario})}">Ver</a></button></td>
+                                  <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarUsuario/{id}(id=${usuario.idUsuario})}">Editar</a></button></td>
+                                  <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarUsuario/{id}(id=${usuario.idUsuario})}">Eliminar</a></button></td>
+
+                          </table>
+
+
+                              <!-- boton que me lleva a la lista de empresas/ definir si se deja boton o no-->
+                              <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpresas}">Ver lista de Empresas</a></button>
+
+
+
 
 
 
@@ -126,15 +140,40 @@
 
                               <!-- FIN TABLAS Y FORMULARIOS -->
                           </div>
-                          
+
                       </div>
-                  </div>
+                    </div>
               </section>
 
         </div>
 
         </div>
     </div>
+    <script th:inline="javascript">
+    window.onload=function(){
+
+        var msg= [[${mensaje}]];
+        if (msg == "saveOK"){
+            Command : toastr["success"]("Usuario registrado con éxito!")
+            }
+        else if (msg == "updateOK"){
+            Command : toastr["success"]("Usuario actualizado con éxito!")
+        }
+        else if (msg == "deleteOK"){
+            Command : toastr["error"]("Usuario eliminado con éxito!")
+        }
+        else if (msg == "deleteError"){
+            Command : toastr["error"]("El usuario no ha sido eliminado!")
+        }
+        toastr.options={
+            "positionClass": "toast-top-right",
+            "showDuration":"300",
+            "showMethod":"fadeIn",
+            "hideMethod":"fadeOut",
+        }
+
+    }
+</script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -148,7 +187,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
-    </div>
+       
 </body>
 
 </html>
