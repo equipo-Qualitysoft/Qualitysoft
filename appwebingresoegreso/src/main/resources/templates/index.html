@@ -12,7 +12,7 @@
 <main>
     <div class="px-4 py-5 my-5 text-center">
         <!--<img class="" src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-shadow.png" height="100"> -->
-        <img src="img/shoes.jpg"class="d-block mx-auto mb-4" height="200" alt="Shoes" />
+        <img src="img/shoes.jpg"class="d-block mx-auto mb-4" height="400" alt="Shoes" />
         <h1 class="display-5 fw-bold">App Zapatos</h1>
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">Camina con estilo</p>
@@ -27,11 +27,10 @@
 <!--                <h3 th:text="'Bienvenido ' + ${user.getNombre()}"></h3>-->
                 <h3 th:text="'Bienvenido ' + ${user.get('name')}"></h3>
 
-                <a href="#" type="button" class="btn btn-primary btn-lg px-4 gap-3">Llevame a la aplicacion</a>
                 <a th:href="@{/tablero}" type="button" class="btn btn-primary btn-lg px-4 gap-3">Llevame a la aplicacion</a>
-
-                <a th:href="@{/logout}" type="button" class="btn btn-outline-secondary btn-lg px-4">Log Out</a>
-
+            </div>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <a th:href="@{/logout}" type="button" class="btn btn-outline-secondary ">Log Out</a>
             </div>
     </div>
 </main>
