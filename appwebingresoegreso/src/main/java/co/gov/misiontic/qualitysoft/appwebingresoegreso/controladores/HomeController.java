@@ -1,8 +1,6 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.controladores;
 
-import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Usuario;
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.UsuarioService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
@@ -23,7 +21,7 @@ public class HomeController {
             model.addAttribute("user", usuarioLogueado);
             //model.addAttribute("profile",  principal.getClaims());
         }
-        return "index";
+        return "index.1html";
     }
 
     @GetMapping("/tablero")
