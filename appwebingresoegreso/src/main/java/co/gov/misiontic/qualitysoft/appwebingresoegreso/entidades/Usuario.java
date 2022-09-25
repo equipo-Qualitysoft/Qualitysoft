@@ -17,6 +17,7 @@ public class Usuario {
     private Long idUsuario;
     @Column(name = "nombre")
     private String nombre;
+
     @Column(name = "imagen")
     private String imagen;
     @Column(name = "correo", unique = true)
@@ -44,7 +45,7 @@ public class Usuario {
     private Empresa empresa;
     public Usuario() {
     }
-    public Usuario(String nombre, String imagen, String correo, String telefono, String clave, EnumRol rol, Empresa empresa ) {
+    public Usuario(String nombre, String imagen, String correo, String telefono, String clave, EnumRol rol , Empresa empresa ) {
         this.nombre = nombre;
         this.imagen = imagen;
         this.correo = correo;

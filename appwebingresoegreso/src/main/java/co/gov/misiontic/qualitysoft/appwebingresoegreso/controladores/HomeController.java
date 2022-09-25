@@ -11,13 +11,23 @@ public class HomeController {
 
     @GetMapping("/")
     public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
+        if (principal != null) {
+            model.addAttribute("profile", principal.getClaims());
+            System.out.println(principal.getClaims());
+        }
         return "index";
+    }
+
+    @GetMapping("/home")
+    public String home(){
+        return "pagina2";
     }
 
     @GetMapping("/empresa")
     public String empresa(){
         return "empresa";
     }
+
     @GetMapping("/usuario")
     public String usuario(){
         return "usuario";
