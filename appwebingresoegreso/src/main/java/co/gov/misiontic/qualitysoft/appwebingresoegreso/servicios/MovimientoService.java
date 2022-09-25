@@ -34,7 +34,7 @@ public class MovimientoService implements IMovimientoService {
     // RETORNA TODOS LOS MOVIMIENTOS POR EMPRESA
     @Override
     public List<MovimientoDinero> getMovimientoDineroListByEmpresa(Long idEmpresa) {
-        Empresa empresa = empresaServicio.EncontrarId(idEmpresa);
+        Empresa empresa = empresaServicio.getEmpresaById(idEmpresa).get();
         List<MovimientoDinero> movimientos = new ArrayList<>();
         for (MovimientoDinero movimiento : getMovimientoDineroList()) {
             if (movimiento.getUsuario().getEmpresa().equals(empresa)) {
@@ -50,7 +50,7 @@ public class MovimientoService implements IMovimientoService {
 
     @Override
     public MovimientoDinero createMovimiento(Long idEmpresa, MovimientoDinero nuevoMovimiento) {
-        nuevoMovimiento.setEmpresa(empresaServicio.EncontrarId(idEmpresa));
+        nuevoMovimiento.setEmpresa(empresaServicio.getEmpresaById(idEmpresa).get());
         return movimientoRepository.save(nuevoMovimiento);
     }
 
