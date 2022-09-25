@@ -23,8 +23,13 @@
             </div>
             <div sec:authorize="isAuthenticated()">
                 <p>Tu estas logueado!</p>
-                <h3 th:text="'Bienvenido ' + ${profile.get('name')}">                </h3>
+<!--                <h3 th:text="'Bienvenido ' + ${profile.get('name')}"></h3>-->
+<!--                <h3 th:text="'Bienvenido ' + ${user.getNombre()}"></h3>-->
+                <h3 th:text="'Bienvenido ' + ${user.get('name')}"></h3>
+
+                <a href="#" type="button" class="btn btn-primary btn-lg px-4 gap-3">Llevame a la aplicacion</a>
                 <a th:href="@{/tablero}" type="button" class="btn btn-primary btn-lg px-4 gap-3">Llevame a la aplicacion</a>
+
                 <a th:href="@{/logout}" type="button" class="btn btn-outline-secondary btn-lg px-4">Log Out</a>
 
             </div>

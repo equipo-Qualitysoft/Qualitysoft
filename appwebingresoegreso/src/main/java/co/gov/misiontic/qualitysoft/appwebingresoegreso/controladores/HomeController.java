@@ -9,24 +9,26 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Map;
+
 @Controller
 public class HomeController {
     UsuarioService usuarioService;
-    Usuario usuarioLogueado;
+    Map<String, Object> usuarioLogueado;
     @GetMapping("/")
     public String home(Model model, @AuthenticationPrincipal OidcUser principal) {
         if (principal != null) {
             //usuarioLogueado = this.usuarioService.getOrCreateUser(principal.getClaims());
-            //model.addAttribute("user", user);
-            //usuarioLogueado = (Usuario) principal.getClaims();
-            model.addAttribute("profile",  principal.getClaims());
+            usuarioLogueado = principal.getClaims();
+            model.addAttribute("user", usuarioLogueado);
+            //model.addAttribute("profile",  principal.getClaims());
         }
         return "index";
     }
 
     @GetMapping("/tablero")
     public String tablero(Model model, @AuthenticationPrincipal OidcUser principal) {
-        model.addAttribute("profile",  principal.getClaims());
+        model.addAttribute("user",  usuarioLogueado);
         return "tablero";
     }
 
