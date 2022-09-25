@@ -51,4 +51,9 @@ public class MovimientoController {
     public ResponseEntity<Boolean> deleteMovimientoDinero(@PathVariable("idEmpresa") Long idEmpresa, @PathVariable("idMovimiento") Long idMovimiento){
         return new ResponseEntity<Boolean>(this.movimientoService.deleteMovimiento(idMovimiento), HttpStatus.OK);
     }
+
+    @GetMapping("/users/{idUsuario}/movements")
+    public List<MovimientoDinero> getMovimientoListByUsuario(@PathVariable("idUsuario") Long idUsuario){
+        return this.movimientoService.getMovimientoListByUsuario(idUsuario);
+    }
 }

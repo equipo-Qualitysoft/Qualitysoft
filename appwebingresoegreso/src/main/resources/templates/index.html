@@ -22,10 +22,11 @@
                 <!--a href="/login" type="button" class="btn btn-primary btn-lg px-4 gap-3">Iniciar Sesion</a-->
             </div>
             <div sec:authorize="isAuthenticated()">
-                <h3 th:text="'Bienvenido ' + ${profile.get('email')}">                </h3>
+                <p>Tu estas logueado!</p>
+                <h3 th:text="'Bienvenido ' + ${profile.get('name')}">                </h3>
                 <a th:href="@{/tablero}" type="button" class="btn btn-primary btn-lg px-4 gap-3">Llevame a la aplicacion</a>
                 <a th:href="@{/logout}" type="button" class="btn btn-outline-secondary btn-lg px-4">Log Out</a>
-                <p>Tu estas logueado!</p>
+
             </div>
     </div>
 </main>

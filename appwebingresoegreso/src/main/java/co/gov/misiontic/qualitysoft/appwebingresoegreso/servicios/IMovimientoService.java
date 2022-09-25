@@ -11,4 +11,6 @@ public interface IMovimientoService {
     public MovimientoDinero createMovimiento(Long idEmpresa,MovimientoDinero nuevoMovimiento);
     public MovimientoDinero updateMovimiento(MovimientoDinero movimiento);
     public Boolean deleteMovimiento(Long idMovimiento);
+
+    public List<MovimientoDinero> getMovimientoListByUsuario(Long idUsuario);
 }
