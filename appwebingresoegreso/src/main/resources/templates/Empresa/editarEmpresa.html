@@ -1,0 +1,229 @@
+<!doctype html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Styles -->
+     <!--<link rel="stylesheet" href="assets/css/style.css"> -->
+     <link  rel="stylesheet"  th:href="@{/css/style.css}"/>
+
+     <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap" rel="stylesheet">
+
+    <!-- Ionic icons -->
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+    <title>Dashboard - QualitySoft</title>
+</head>
+
+<body>
+    <div class="d-flex" id="content-wrapper">
+
+        <!-- Sidebar -->
+        <div id="sidebar-container" class="bg-primary">
+            <div class="logo">
+                <h4 class="text-light font-weight-bold mb-0">QualitySoft</h4>
+            </div>
+            <div th:replace="fragments :: html_menu" >
+
+            </div>
+        </div>
+        <!-- Fin sidebar -->
+
+        <div class="w-100">
+
+         <!-- Navbar -->
+         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container">
+    
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+    
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline position-relative d-inline-block my-2">
+                  <input class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+                  <button class="btn position-absolute btn-search" type="submit"><i class="icon ion-md-search"></i></button>
+                </form>
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Viktor Grajales
+                    </a>                   
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <!-- Fin Navbar -->
+
+        <!-- Page Content -->
+        <div id="content" class="bg-grey w-100">
+
+              <section class="bg-light py-3">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-9 col-md-8">
+                            <h1 class="font-weight-bold mb-0">Usuarios</h1>
+                            <p class="lead text-muted">Ingrese los nuevos refistros para editar el usuarios</p>
+                          </div>                         
+                      </div>
+                  </div>
+              </section>
+
+            <section th:replace="fragments :: botones_usuarios" >
+
+            </section>
+
+
+              <section>
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-12 my-3">
+                              <!-- TABLAS Y FORMULARIOS -->
+                              <!--Crear formulario para llenar los datos del usuario y guardarlo en el objeto user -->
+                              <form th:action="@{/ActualizarUsuario}" th:object="${user}" method="post">
+
+                                  <!--Campo para idUsuario de solo lectura-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="idUsuario">Id:</label>
+                                          <div class="col-md-6">
+                                              <input type="text" th:field="*{idUsuario}" class="form-control" id="idUsuario" required="required" readonly></div>
+                                      </div>
+                                  </div>
+
+                                  <!--Campo para nombre-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="nombre">Nombre:</label>
+                                          <div class="col-md-6">
+                                              <input type="text" th:field="*{nombre}" class="form-control" id="nombre" required="required"></div>
+                                      </div>
+                                  </div>
+
+                                  <!--Campo para imagen-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="imagen">Imagen:</label>
+                                          <div class="col-md-6">
+                                              <input type="image" th:field="*{imagen}" class="form-control" id="imagen" required="required"></div>
+                                      </div>
+                                  </div>
+                                  <!--Campo para correo-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="correo">Correo:</label>
+                                          <div class="col-md-6">
+                                              <input type="email" th:field="*{correo}" class="form-control" id="correo" required="required"></div>
+                                      </div>
+                                  </div>
+
+                                  <!--Campo para telefono-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="telefono">Telefono:</label>
+                                          <div class="col-md-6">
+                                              <input type="number" th:field="*{telefono}" class="form-control" id="telefono" required="required"></div>
+                                      </div>
+                                  </div>
+
+                                  <!--Campo para contraseña-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="clave">Contraseña de acceso:</label>
+                                          <div class="col-md-6">
+                                              <input type="password" th:field="*{clave}" class="form-control" id="clave" required="required"></div>
+                                      </div>
+                                  </div>
+
+                                  <!--Campo para Rol-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="rol">Rol del Usuario:</label>
+                                          <div class="col-md-6">
+                                              <select th:field="*{rol}" class="form-control" id="rol" required="required">
+                                                  <option th:value='ROLE_ADMIN'>Administrativo</option>
+                                                  <option th:value='ROLE_USER'>Operativo</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!--Campo para empresa-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="empresa">Empresa a la que pertence:</label>
+                                          <div class="col-md-6">
+                                              <select th:field="*{empresa}" class="form-control" id="empresa" required="required">
+                                                  <option th:each="empresa : ${empresaslist}" th:text="${empresa.nombre}" th:value="${empresa.idEmpresa}"></option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!--Campo para Estado-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="estado">Estado actual del Usuario:</label>
+                                          <div class="col-md-6">
+                                              <select th:field="*{estado}" class="form-control" id="estado" required="required">
+                                                  <option th:value=true>Activo</option>
+                                                  <option th:value=false>Inactivo</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!--Boton para enviar todo y ejecutar accion -->
+                                  <div class="row">
+                                      <div class="col-md-2">
+                                          <button class="btn btn-success">Actualizar Usuario</button>
+                                      </div>
+                                  </div>
+
+
+                              </form>
+                              <br>
+                              <a href="javascript: history.go(-1)" class="btn btn-info" role="button">Atrás</a>
+
+
+
+
+
+
+
+                              <!-- FIN TABLAS Y FORMULARIOS -->
+                          </div>
+                          
+                      </div>
+                  </div>
+              </section>
+
+        </div>
+
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+       
+</body>
+
+</html>
