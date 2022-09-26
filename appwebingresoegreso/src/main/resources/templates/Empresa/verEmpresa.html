@@ -72,14 +72,14 @@
                   <div class="container">
                       <div class="row">
                           <div class="col-lg-9 col-md-8">
-                            <h1 class="font-weight-bold mb-0">Usuarios</h1>
-                            <p class="lead text-muted">Lista de Usuarios</p>
+                            <h1 class="font-weight-bold mb-0">Empresas</h1>
+                            <p class="lead text-muted">Lista de Empresas</p>
                           </div>                         
                       </div>
                   </div>
               </section>
 
-            <section th:replace="fragments :: botones_usuarios" >
+            <section th:replace="fragments :: botones_Empresas" >
 
             </section>
 
@@ -102,32 +102,39 @@
                                   <th>Estado</th>
                                   <!-- <th>Fecha de Ingreso</th> pendiente -->
                                   <!-- <th>Fecha de Salida</th>-->
+
+                              <br><table class="table table-bordered">
+                              <tr>
+                                  <th>IdEmpresa</th>
+                                  <th>Nombre</th>
+                                  <th>Dirección</th>
+                                  <th>Telefono</th>
+                                  <th>nit</th>
+                                  <th>Empleados</th>
                                   <th>Movimientos</th>
                                   <th>Editar</th>
                                   <th>Eliminar</th>
                               </tr>
-                              <tr th:each="usuario : ${usuarioslist}">
-                                  <td th:text="${usuario.idUsuario}"></td>
-                                  <td th:text="${usuario.nombre}"></td>
-                                  <td th:text="${usuario.imagen}"></td>
-                                  <td th:text="${usuario.correo}"></td>
-                                  <td th:text="${usuario.telefono}"></td>
-                                  <td th:text="${usuario.clave}"></td>
-                                  <td th:text="${usuario.rol}"></td>
-                                  <td th:text="${usuario.empresa.nombre}"></td>
-                                  <td th:text="${usuario.estado}"></td>
+                              <tr th:each="empresa : ${emplist}">
+                                  <td th:text="${empresa.idEmpresa}"></td>
+                                  <td th:text="${empresa.nombre}"></td>
+                                  <td th:text="${empresa.direccion}"></td>
+                                  <td th:text="${empresa.telefono}"></td>
+                                  <td th:text="${empresa.nit}"></td>
+
+
+                                  <!--<td th:text="${usuario.empresa.nombre}"></td>
+                                  <td th:text="${usuario.estado}"></td>-->
                                   <!-- <td th:text="${usuario.fecha_ingreso}"></td>-->
                                   <!-- <td th:text="${usuario.fecha_salida}"></td>-->
                                   <!-- Pendiente euler crear controldaror segun mi ruta para consultar movimiento por empleado -->
-                                  <td><button type="button" class="btn btn-infor"><a th:href="@{/Usuarios/{idUsuario}/Movimientos(id=${usuario.idUsuario})}">Ver</a></button></td>
-                                  <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarUsuario/{id}(id=${usuario.idUsuario})}">Editar</a></button></td>
-                                  <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarUsuario/{id}(id=${usuario.idUsuario})}">Eliminar</a></button></td>
+                              <td><a th:href="@{/Empresa/{idEmpresa}/Empleados (idEmpresa=${empresa.idEmpresa})}"><button type="button" class="btn btn-info"><i class="icon ion-ios-eye lead mr-2"></i>Ver</button></a></td>
+                              <td><a th:href="@{/Empresa/{idEmpresa}/Movimientos (idEmpresa=${empresa.idEmpresa})}"><button type="button" class="btn btn-info"><i class="icon ion-ios-eye lead mr-2"></i>Ver</button></a></td>
+                              <td><a th:href="@{/EditarEmpresa/{idEmpresa}(idEmpresa=${empresa.idEmpresa})}"><button type="button" class="btn btn-warning"><i class="icon ion-ios-create lead mr-2"></i>Editar</button></a></td>
+                              <td><a th:href="@{/EliminarEmpresa/{idEmpresa}(idEmpresa=${empresa.idEmpresa})}"><button type="button" class="btn btn-danger"><i class="icon ion-ios-trash lead mr-2"></i>Eliminar</button></a></td>
+
 
                           </table>
-
-
-                              <!-- boton que me lleva a la lista de empresas/ definir si se deja boton o no-->
-                              <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpresas}">Ver lista de Empresas</a></button>
 
 
 

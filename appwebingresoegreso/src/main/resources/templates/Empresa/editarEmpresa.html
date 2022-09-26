@@ -75,12 +75,14 @@
                           <div class="col-lg-9 col-md-8">
                             <h1 class="font-weight-bold mb-0">Usuarios</h1>
                             <p class="lead text-muted">Ingrese los nuevos refistros para editar el usuarios</p>
+                            <h1 class="font-weight-bold mb-0">Empresas</h1>
+                            <p class="lead text-muted">Ingrese los nuevos registros para editar las empresas</p>
                           </div>                         
                       </div>
                   </div>
               </section>
 
-            <section th:replace="fragments :: botones_usuarios" >
+            <section th:replace="fragments :: botones_Empresas" >
 
             </section>
 
@@ -106,6 +108,24 @@
                                   <div class="row">
                                       <div class="form-group col-md-12">
                                           <label class="col-md-3" for="nombre">Nombre:</label>
+                              <!--Crear formulario para llenar los datos de la empresa y guardarlo en el objeto emp -->
+                              <form th:action="@{/ActualizarEmpresa}" th:object="${emp}" method="post">
+
+                                  <!--Campo para id-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="idEmpresa">ID de la Empresa:</label>
+                                          <div class="col-md-6">
+                                              <input type="text" th:field="*{idEmpresa}" class="form-control" id="idEmpresa" required="required" readonly></div>
+                                      </div>
+                                  </div>
+
+
+
+                                  <!--Campo para nombre-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="nombre">Nombre de la Empresa:</label>
                                           <div class="col-md-6">
                                               <input type="text" th:field="*{nombre}" class="form-control" id="nombre" required="required"></div>
                                       </div>
@@ -125,6 +145,12 @@
                                           <label class="col-md-3" for="correo">Correo:</label>
                                           <div class="col-md-6">
                                               <input type="email" th:field="*{correo}" class="form-control" id="correo" required="required"></div>
+                                  <!--Campo para direccion-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="direccion">Direccion de la Empresa:</label>
+                                          <div class="col-md-6">
+                                              <input type="text" th:field="*{direccion}" class="form-control" id="direccion" required="required"></div>
                                       </div>
                                   </div>
 
@@ -188,6 +214,29 @@
                                       </div>
                                   </div>
 
+
+                                          <label class="col-md-3" for="telefono">Telefono de la Empresa:</label>
+                                          <div class="col-md-6">
+                                              <input type="text" th:field="*{telefono}" class="form-control" id="telefono" required="required"></div>
+                                      </div>
+                                  </div>
+
+                                  <!--Campo para NIT-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="nit">NIT o RUT de la Empresa:</label>
+                                          <div class="col-md-6">
+                                              <input type="text" th:field="*{nit}" class="form-control" id="nit" required="required"></div>
+                                      </div>
+                                  </div>
+
+
+                                  <!--Boton para enviar todo y ejecutar accion -->
+                                  <div class="row">
+                                      <div class="col-md-2">
+                                          <button class="btn btn-success">Actualizar Empresa</button>
+                                      </div>
+                                  </div>
 
                               </form>
                               <br>

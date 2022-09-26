@@ -70,7 +70,7 @@ public class UsuarioController {
     public String eliminarUsuario(@PathVariable Long idUsuario, RedirectAttributes redirectAttributes){
         if (usuarioService.deleteUsuario(idUsuario)==true){
             redirectAttributes.addFlashAttribute("mensaje","deleteOK");
-            return "redirect:/VerUsuarioS";
+            return "redirect:/VerUsuarios";
         }
         redirectAttributes.addFlashAttribute("mensaje", "deleteError");
         return "redirect:/VerUsuarios";
