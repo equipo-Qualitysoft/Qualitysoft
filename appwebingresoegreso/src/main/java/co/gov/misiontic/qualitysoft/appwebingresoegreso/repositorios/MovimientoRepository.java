@@ -7,5 +7,6 @@ import java.util.List;
 
 @Repository
 public interface MovimientoRepository extends JpaRepository<MovimientoDinero, Long> {
+public List<MovimientoDinero> findByUsuario(Long id);
 
 }

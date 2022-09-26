@@ -1,12 +1,16 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.controladores;
 
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.MovimientoDinero;
+import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Usuario;
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.IMovimientoService;
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -47,8 +51,35 @@ public class MovimientoController {
     public MovimientoDinero updateMovimientoDinero(@PathVariable("idEmpresa") Long idEmpresa,@PathVariable("idMovimiento") Long idMovimiento,@RequestBody MovimientoDinero movimientoDinero){
         return this.movimientoService.updateMovimiento(movimientoDinero);
     }
-    @DeleteMapping("/enterprises/{idEmpresa}/movements/{idMovimiento}")
-    public ResponseEntity<Boolean> deleteMovimientoDinero(@PathVariable("idEmpresa") Long idEmpresa, @PathVariable("idMovimiento") Long idMovimiento){
-        return new ResponseEntity<Boolean>(this.movimientoService.deleteMovimiento(idMovimiento), HttpStatus.OK);
+
+    // ACTUALIZAR MOVIMIENTO POR ID *terminar *****************************************
+    @PatchMapping("/verMovimientos/{id}")
+    public RedirectView updateMovimiento(@PathVariable("id") Long id, @RequestBody MovimientoDinero movimientoDinero, RedirectAttributes attributes){
+        //this.movimientoService.(id, );
+        return new RedirectView("/tasks");
     }
+
+
+    // BORRA MOVIMIENTO POR ID
+    @DeleteMapping("/verMovimiento/{id}")
+    public RedirectView deleteMovimiento(@PathVariable("id") Long id){
+        this.movimientoService.deleteMovimiento(id);
+        return new RedirectView("/verMovimiento");
+    }
+
+
+    @GetMapping("/users/{idUsuario}/movements")
+    public List<MovimientoDinero> getMovimientoListByUsuario(@PathVariable("idUsuario") Long idUsuario){
+        return this.movimientoService.getMovimientoListByUsuario(idUsuario);
+    }
+
+//    @GetMapping("/agregarMovimiento")
+//    public String nuevoMovimiento(Model model, @ModelAttribute("mensaje") String mensaje){
+//        MovimientoDinero movimiento = new MovimientoDinero();
+//        model.addAttribute("movimiento",movimiento);
+//        model.addAttribute("mensaje",mensaje);
+//        //List<Empresa> listaEmpresas=empresaServicio.getAllEmpresas //confirmar con nicolas
+//        //model.addAttribute("empresaslist", listaEmpresas);
+//        return "MovimientoDinero/agregarMovimiento";
+//    }
 }

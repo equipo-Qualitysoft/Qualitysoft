@@ -1,5 +1,5 @@
 <!doctype html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <!-- Required meta tags -->
@@ -73,6 +73,8 @@
                   <div class="container">
                       <div class="row">
                           <div class="col-lg-9 col-md-8">
+                            <h1 class="font-weight-bold mb-0">Usuarios</h1>
+                            <p class="lead text-muted">Ingrese los nuevos refistros para editar el usuarios</p>
                             <h1 class="font-weight-bold mb-0">Empresas</h1>
                             <p class="lead text-muted">Ingrese los nuevos registros para editar las empresas</p>
                           </div>                         
@@ -90,6 +92,22 @@
                       <div class="row">
                           <div class="col-lg-12 my-3">
                               <!-- TABLAS Y FORMULARIOS -->
+                              <!--Crear formulario para llenar los datos del usuario y guardarlo en el objeto user -->
+                              <form th:action="@{/ActualizarUsuario}" th:object="${user}" method="post">
+
+                                  <!--Campo para idUsuario de solo lectura-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="idUsuario">Id:</label>
+                                          <div class="col-md-6">
+                                              <input type="text" th:field="*{idUsuario}" class="form-control" id="idUsuario" required="required" readonly></div>
+                                      </div>
+                                  </div>
+
+                                  <!--Campo para nombre-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="nombre">Nombre:</label>
                               <!--Crear formulario para llenar los datos de la empresa y guardarlo en el objeto emp -->
                               <form th:action="@{/ActualizarEmpresa}" th:object="${emp}" method="post">
 
@@ -113,6 +131,20 @@
                                       </div>
                                   </div>
 
+                                  <!--Campo para imagen-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="imagen">Imagen:</label>
+                                          <div class="col-md-6">
+                                              <input type="image" th:field="*{imagen}" class="form-control" id="imagen" required="required"></div>
+                                      </div>
+                                  </div>
+                                  <!--Campo para correo-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="correo">Correo:</label>
+                                          <div class="col-md-6">
+                                              <input type="email" th:field="*{correo}" class="form-control" id="correo" required="required"></div>
                                   <!--Campo para direccion-->
                                   <div class="row">
                                       <div class="form-group col-md-12">
@@ -125,6 +157,64 @@
                                   <!--Campo para telefono-->
                                   <div class="row">
                                       <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="telefono">Telefono:</label>
+                                          <div class="col-md-6">
+                                              <input type="number" th:field="*{telefono}" class="form-control" id="telefono" required="required"></div>
+                                      </div>
+                                  </div>
+
+                                  <!--Campo para contraseña-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="clave">Contraseña de acceso:</label>
+                                          <div class="col-md-6">
+                                              <input type="password" th:field="*{clave}" class="form-control" id="clave" required="required"></div>
+                                      </div>
+                                  </div>
+
+                                  <!--Campo para Rol-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="rol">Rol del Usuario:</label>
+                                          <div class="col-md-6">
+                                              <select th:field="*{rol}" class="form-control" id="rol" required="required">
+                                                  <option th:value='ROLE_ADMIN'>Administrativo</option>
+                                                  <option th:value='ROLE_USER'>Operativo</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!--Campo para empresa-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="empresa">Empresa a la que pertence:</label>
+                                          <div class="col-md-6">
+                                              <select th:field="*{empresa}" class="form-control" id="empresa" required="required">
+                                                  <option th:each="empresa : ${empresaslist}" th:text="${empresa.nombre}" th:value="${empresa.idEmpresa}"></option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!--Campo para Estado-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="estado">Estado actual del Usuario:</label>
+                                          <div class="col-md-6">
+                                              <select th:field="*{estado}" class="form-control" id="estado" required="required">
+                                                  <option th:value=true>Activo</option>
+                                                  <option th:value=false>Inactivo</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!--Boton para enviar todo y ejecutar accion -->
+                                  <div class="row">
+                                      <div class="col-md-2">
+                                          <button class="btn btn-success">Actualizar Usuario</button>
+                                      </div>
+                                  </div>
+
+
                                           <label class="col-md-3" for="telefono">Telefono de la Empresa:</label>
                                           <div class="col-md-6">
                                               <input type="text" th:field="*{telefono}" class="form-control" id="telefono" required="required"></div>

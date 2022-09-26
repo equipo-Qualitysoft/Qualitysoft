@@ -1,11 +1,12 @@
+# src/main/resources/application.yml
 spring:
   security:
     oauth2:
       client:
         registration:
           auth0:
-            client-id: vXyAxTxbS0YDVfG0P26iYe6oIQofEZJK
-            client-secret: 14QX18am6c8KWCbayRUgkxJLrzD2jXp6nqVWBjh0V7AqlyohErnoeXUfshEGjfAz
+            client-id: sv3f1lOZQlwJKEt27FCHrOPjec6F8fur
+            client-secret: VnDA8mchdH6FZT7pPiABDwfeGZrmhD5q1njJpoBnVw3qa_qmLhm4Yskq7n41fKYM
             scope:
               - openid
               - profile
