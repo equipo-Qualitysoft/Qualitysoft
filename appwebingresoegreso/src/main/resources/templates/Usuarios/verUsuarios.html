@@ -1,79 +1,149 @@
-<!DOCTYPE html>
+<!doctype html >
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Lista de Usuarios</title>
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <style>
-    a{
-    color:white;
-    }
-    a:hover {
-    color: black;
-    text-decoration:none;
-    }
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Styles -->
+     <!--<link rel="stylesheet" href="assets/css/style.css"> -->
+     <link  rel="stylesheet"  th:href="@{/css/style.css}"/>
+
+     <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap" rel="stylesheet">
+
+    <!-- Ionic icons -->
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+    <title>Dashboard - QualitySoft</title>
 </head>
+
 <body>
-    <div class="container">
-    <p th:inline="text" class="text-right">User: [[${#httpServletRequest.remoteUser}]]</p> <!--Muestra el nombre del usuario que esta operando el sistema-->
-    <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
-    <h1> Lista de Usuarios</h1>
+    <div class="d-flex" id="content-wrapper">
 
-    <!--Dibujamos la tabla-->
-    <br><table class="table table-bordered">
-    <tr>
-        <th>Id</th>
-        <th>Nombre</th>
-        <th>Imagen</th>
-        <th>Correo</th>
-        <th>Telefono</th>
-        <th>Clave</th>
-        <th>Fecha de Ingreso</th>
-        <th>Fecha de Salida</th>
-        <th>Estado</th>
-        <th>Empresa</th>
-        <th>Rol</th>
-        <th>Movimiento</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+        <!-- Sidebar -->
+        <div id="sidebar-container" class="bg-primary">
+            <div class="logo">
+                <h4 class="text-light font-weight-bold mb-0">QualitySoft</h4>
+            </div>
+            <div th:replace="fragments :: html_menu" >
+            </div>
+        </div>
+        <!-- Fin sidebar -->
 
-    </tr>
+        <div class="w-100">
 
-    <!--Llenamos la tabla dibujada-->
-    <!--En nuestro controller, creamos en viewUsuario un modelo con un atributo llamado usuarioslist donde esta guardada la lista de todas los usuarios-->
-    <tr th:each="usuario : ${usuarioslist}">
-        <td th:text="${usuario.idUsuario}"></td>
-        <td th:text="${usuario.nombre}"></td>
-        <td th:text="${usuario.imagen}"></td>
-        <td th:text="${usuario.correo}"></td>
-        <td th:text="${usuario.telefono}"></td>
-        <td th:text="${usuario.clave}"></td>
-        <td th:text="${usuario.fechaingreso}"></td>
-        <td th:text="${usuario.fechasalida}"></td>
-        <td th:text="${usuario.estado}"></td>
-        <td th:text="${usuario.empresa.nombre}"></td>
-        <td th:text="${usuario.rol}"></td>
-        <!-- Pendiente euler crear controldaror segun mi ruta para consultar movimiento por empleado -->
-        <td><button type="button" class="btn btn-infor"><a th:href="@{/Usuarios/{idUsuario}/Movimientos(id=${usuario.idUsuario})}">Ver</a></button></td>
-        <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarUsuario/{id}(id=${usuario.id})}">Editar</a></button></td>
-        <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarUsuario/{id}(id=${usuario.id})}">Eliminar</a></button></td>
-    </tr>
-</table>
+         <!-- Navbar -->
+         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container">
+    
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+    
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <form class="form-inline position-relative d-inline-block my-2">
+                  <input class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+                  <button class="btn position-absolute btn-search" type="submit"><i class="icon ion-md-search"></i></button>
+                </form>
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                  <li class="nav-item dropdown">
+                    <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Viktor Grajales
+                    </a>                   
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+          <!-- Fin Navbar -->
 
-    <!-- boton que sirve para agregar nuevos usuarios -->
-    <button type="button" class="btn btn-info"><a th:href="@{/AgregarUsuario}">Agregar Nuevo Usuario</a></button>
-    <br><br>
-    <!-- boton que me lleva a la lista de empresas-->
-    <button type="button" class="btn btn-primary"><a th:href="@{/VerEmpresas}">Ver lista de Empresas</a></button>
-</div>
+        <!-- Page Content -->
+        <div id="content" class="bg-grey w-100">
 
-<script th:inline="javascript">
+              <section class="bg-light py-3">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-9 col-md-8">
+                            <h1 class="font-weight-bold mb-0">Usuarios</h1>
+                            <p class="lead text-muted">Lista de Usuarios</p>
+                          </div>                         
+                      </div>
+                  </div>
+              </section>
+
+            <section th:replace="fragments :: botones_usuarios" >
+
+            </section>
+
+
+              <section>
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-12 my-3">
+                              <!-- TABLAS Y FORMULARIOS -->
+                              <br><table class="table table-striped">
+                              <tr>
+                                  <th>Id</th>
+                                  <th>Nombre</th>
+                                  <th>Correo</th>
+                                  <th>Teléfono</th>
+                                  <th>Rol</th>
+                                  <th>Empresa</th>
+                                  <!-- <th>Fecha de Ingreso</th> pendiente -->
+                                  <!-- <th>Fecha de Salida</th>-->
+                                  <th>Movimientos</th>
+                                  <th>Editar</th>
+                                  <th>Eliminar</th>
+                              </tr>
+                              <tr th:each="usuario : ${usuarioslist}">
+                                  <td th:text="${usuario.idUsuario}"></td>
+                                  <td th:text="${usuario.nombre}"></td>
+                                  <td th:text="${usuario.correo}"></td>
+                                  <td th:text="${usuario.telefono}"></td>
+                                  <td th:text="${usuario.rol}"></td>
+                                  <td th:text="${usuario.empresa.nombre}"></td>
+                                  <!-- <td th:text="${usuario.fecha_ingreso}"></td>-->
+                                  <!-- <td th:text="${usuario.fecha_salida}"></td>-->
+                                  <!-- Pendiente euler crear controldaror segun mi ruta para consultar movimiento por empleado -->
+                                  <td><a th:href="@{/Usuarios/{idUsuario}/Movimientos(id=${usuario.idUsuario})}"><button type="button" class="btn btn-info"><i class="icon ion-ios-eye lead mr-2"></i>Ver</button></a></td>
+                                  <td><a th:href="@{/EditarUsuario/{id}(id=${usuario.idUsuario})}"><button type="button" class="btn btn-warning"><i class="icon ion-ios-create lead mr-2"></i>Editar</button></a></td>
+                                  <td><a th:href="@{/EliminarUsuario/{id}(id=${usuario.idUsuario})}"><button type="button" class="btn btn-danger"><i class="icon ion-ios-trash lead mr-2"></i> Eliminar</button></a></td>
+
+                          </table>
+
+
+                              <!-- boton que me lleva a la lista de empresas/ definir si se deja boton o no-->
+                              <a th:href="@{/VerEmpresas}"> <button type="button" class="btn btn-primary">Ver lista de Empresas</button></a>
+
+
+
+
+
+
+
+
+
+
+                              <!-- FIN TABLAS Y FORMULARIOS -->
+                          </div>
+
+                      </div>
+                    </div>
+              </section>
+
+        </div>
+
+        </div>
+    </div>
+    <script th:inline="javascript">
     window.onload=function(){
 
         var msg= [[${mensaje}]];
@@ -98,5 +168,20 @@
 
     }
 </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+       
 </body>
+
 </html>
