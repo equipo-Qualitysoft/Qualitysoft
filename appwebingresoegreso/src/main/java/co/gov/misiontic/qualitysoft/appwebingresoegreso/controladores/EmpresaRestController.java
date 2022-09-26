@@ -35,7 +35,7 @@ public class EmpresaRestController {
         return empresaServicio.BuscarTodo();
 
     }
-
+/*
     //Se crea el Apirest Post
     @PostMapping("/enterprises")
     public Empresa crearEmpresa  (@RequestBody Empresa empresa){
@@ -46,12 +46,14 @@ public class EmpresaRestController {
 
 
 
+ */
+
 
 
     //Segunda parte del primer Sprint 3
 
     //Se crea el Apirest Get
-    @GetMapping("/enterprises/{id}")
+    /*@GetMapping("/enterprises/{id}")
 
     public Empresa EncontrarId (@PathVariable Long id){
 
@@ -59,24 +61,32 @@ public class EmpresaRestController {
 
     }
 
+     */
+
 
     //se crea el Apirest Update
-    @PutMapping("/enterprises/{id}")
+  //  @PutMapping("/enterprises/{id}")
+/*
     public Empresa UpdateEmpresa (@PathVariable Long id, @RequestBody Empresa empresa){
 
         return empresaServicio.UpdateEmpresa(id, empresa);
 
     }
 
+
+ */
     //se crea el Apirest Delete
-    @DeleteMapping("/enterprises/{id}")
+//    @DeleteMapping("/enterprises/{id}")
     //el @Patchvariable me hace la busqueda
+    /*
     public void deleteEmpresa (@PathVariable Long id){
 
         empresaServicio.deleteEmpresa(id);
 
     }
 
+
+     */
 
 
 }
