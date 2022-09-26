@@ -1,5 +1,5 @@
 <!doctype html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <!-- MENU DE LA PAGINA -->
     <div class="menu" th:fragment="html_menu">
         <a href="./" class="d-block text-light p-3 border-0"><i class="icon ion-ios-home lead mr-2"></i>
@@ -13,11 +13,11 @@
 
         <a href="./verMovimiento" class="d-block text-light p-3 border-0"><i class="ion-ios-cash lead mr-2"></i>
             Movimientos</a>
-        <a href="#" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
+        <a href="./verClientesProveedores" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
             Clientes Y Proveedores</a>
-        <a href="#" class="d-block text-light p-3 border-0"><i class="icon ion-ios-apps lead mr-2"></i>
+        <a href="./verArticulos" class="d-block text-light p-3 border-0"><i class="icon ion-ios-apps lead mr-2"></i>
             Zapatos</a>
-        <a href="#" class="d-block text-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i>
+        <a th:href="@{/logout}" class="d-block text-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i>
             Salir</a>
     </div>
     <!-- FIN DE MENU DE LA PAGINA -->
@@ -89,6 +89,45 @@
     </div>
 </section>
 
-<!-- FIN DE BOTONES MOVIMEINTOS -->
+<!-- FIN DE BOTONES MOVIMIENTOS -->
 
+
+<!-- BOTONES ARTICULOS -->
+<section class="bg-mix py-3 " th:fragment="botones_articulos">
+    <div class="container">
+        <div class="card rounded-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                        <div class="mx-auto">
+                            <a href="./verArticulos" class="btn btn-primary w-100 align-self-center">Ver Articulos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FIN DE BOTONES ARETICULOS -->
+
+<!-- BOTONES CLIESTES/PROVEEDORES -->
+<section class="bg-mix py-3 " th:fragment="botones_clientes_proveedores">
+    <div class="container">
+        <div class="card rounded-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                        <div class="mx-auto">
+                            <a href="./verClientesProveedores" class="btn btn-primary w-100 align-self-center">Ver Clientes y/o Poveedores</a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FIN DE BOTONES CLIENTES/PROVEDORES -->
 </html>

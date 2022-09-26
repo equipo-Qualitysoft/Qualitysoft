@@ -1,5 +1,5 @@
 <!doctype html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 <head>
     <!-- Required meta tags -->
@@ -98,27 +98,42 @@
                                       <th>Usuario</th>
                                       <th>Tipo Cliente/Proveedor</th>
                                       <th>Cliente/Proveedor</th>
-<!--                                      <th>Empresa</th>-->
+                                      <th>Empresa</th>
                                       <th>Editar</th>
                                       <th>Eliminar</th>
                                     </tr>
                                   <tr th:each="movimiento : ${movimientos}">
-                                  <td th:text="${movimiento.idMovimiento}"></td>
-                                  <td th:text="${movimiento.concepto}"></td>
-                                  <td th:text="${movimiento.monto}"></td>
-                                  <td th:text="${movimiento.fecha}"></td>
-                                  <td th:text="${movimiento.articulo.descripcion}"></td>
-                                  <td th:text="${movimiento.usuario.nombre}"></td>
-                                  <td>
-                                        <span th:if="${movimiento.clienteProveedor.isTipoCP()}"> Cliente</span>
-                                        <span th:unless="${movimiento.clienteProveedor.isTipoCP()}">Proveedor</span>
-                                  </td>
-                                  <td th:text="${movimiento.clienteProveedor.getNombre()}"> </td>"
-<!--                                  <td th:text="${movimiento.empresa.nombre}"></td>-->
+                                      <td th:text="${movimiento.idMovimiento}"></td>
+                                      <td th:text="${movimiento.concepto}"></td>
+                                      <td th:text="${movimiento.monto}"></td>
+                                      <td th:text="${movimiento.fecha}"></td>
+                                      <td th:text="${movimiento.articulo.descripcion}"></td>
+                                      <td th:text="${movimiento.usuario.nombre}"></td>
+                                      <td>
+                                            <span th:if="${movimiento.clienteProveedor.isTipoCP()}"> Cliente</span>
+                                            <span th:unless="${movimiento.clienteProveedor.isTipoCP()}">Proveedor</span>
+                                      </td>
+                                      <td th:text="${movimiento.clienteProveedor.getNombre()}"> </td>"
+                                      <td th:text="${movimiento.empresa.nombre}"></td>
 
-                                  <td><a th:href="@{/EditarMovimiento/{id}(id=${movimiento.idMovimiento})}"><button type="button" class="btn btn-warning"><i class="icon ion-ios-create lead mr-2"></i> Editar     </button></a></td>
-                                  <td><a th:href="@{/EliminarMovimiento/{id}(id=${movimiento.idMovimiento})}"><button type="button" class="btn btn-danger"><i class="icon ion-ios-trash lead mr-2"></i> Eliminar   </button></a></td>
+                                      <td>
+                                          <a th:href="@{/editarMovimiento/{id}(id=${movimiento.idMovimiento})}">
+                                              <button type="button" class="btn btn-warning">
+                                                  <i class="icon ion-ios-create lead mr-2">
+                                                  </i> Editar
+                                              </button>
+                                          </a>
+                                      </td>
 
+                                      <td>
+                                          <form th:action="@{/verMovimiento/{id}(id=${movimiento.idMovimiento})}" th:method="delete">
+                                              <button type="submit"  class="btn btn-danger">
+                                                  <i class="icon ion-ios-create lead mr-2">
+                                                  </i> Eliminar
+                                              </button>
+                                          </form>
+                                      </td>
+                                  </tr>
                                 </table>
 
 

@@ -60,6 +60,14 @@ public class MovimientoService implements IMovimientoService {
         return movimientoRepository.save(movimiento);
     }
 
+
+    // TERMINAR DE IMPELMENTAR
+    public MovimientoDinero updateMovimientoById(Long idMovimiento, MovimientoDinero movimiento) {
+        //MovimientoDinero movimiento = getMovimientoById(idMovimiento);
+        return movimientoRepository.save(movimiento);
+    }
+
+
     @Override
     public Boolean deleteMovimiento(Long idMovimiento) {
         if (movimientoRepository.findById(idMovimiento).isPresent()) {

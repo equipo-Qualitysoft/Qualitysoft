@@ -1,16 +1,19 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.controladores;
 
+import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Articulo;
+import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.ClienteProveedor;
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.MovimientoDinero;
-import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.IMovimientoService;
-import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.MovimientoService;
-import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.UsuarioService;
+import co.gov.misiontic.qualitysoft.appwebingresoegreso.repositorios.ClienteProveedorRepository;
+import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +22,14 @@ import java.util.Map;
 public class HomeController {
     @Autowired
     IMovimientoService movimientoService;
+    @Autowired
+    IArticuloService articuloService;
+    @Autowired
+    IClienteProveedorService clienteProveedorService;
     Map<String, Object> usuarioLogueado;
+
+    @Autowired
+    ClienteProveedorRepository clienteRepository;
 
 
     @GetMapping("/")
@@ -58,15 +68,23 @@ public class HomeController {
         return "MovimientoDinero/verMovimiento";
     }
 
-
-
-    @GetMapping("/cliente-proveedor")
-    public String clienteProveedor(){
-        return "cliente-proveedor";
+    @GetMapping("/verArticulos")
+    public String verArticulos(Model model) {
+        List<Articulo> articulos = this.articuloService.getAllArticulos();
+        model.addAttribute("articulos",  articulos);
+        return "Articulos/verArticulos";
     }
-    @GetMapping("/articulo")
-    public String articulo(){
-        return "articulo";
+
+
+    @GetMapping("/verClientesProveedores")
+    public String verClienteProveedor(Model model) {
+        //List<ClienteProveedor> clientesProveedores = this.clienteProveedorService.getAllClientesProveedores();
+        List<ClienteProveedor> clientesProveedores = clienteRepository.findAll();
+        if (clientesProveedores.isEmpty()) {
+            System.out.println("No hay clientes o proveedores registrados");
+        }
+        model.addAttribute("clientesProveedores",  clientesProveedores);
+        return "ClientesProveedores/verClientesProveedores";
     }
 
 
