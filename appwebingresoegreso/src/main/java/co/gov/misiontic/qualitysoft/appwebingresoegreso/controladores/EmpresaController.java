@@ -1,7 +1,6 @@
 package co.gov.misiontic.qualitysoft.appwebingresoegreso.controladores;
 
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Empresa;
-import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Usuario;
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.IEmpresaServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
