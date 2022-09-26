@@ -20,6 +20,8 @@ public class EmpresaController {
     @Autowired
     private IEmpresaServicio empresaServicio;
 
+    //Apartir de aqui, se crean los controladores que direccionan a las vistas
+    
     @GetMapping ("/VerEmpresas")
     public String viewEmpresas(Model model, @ModelAttribute("mensaje") String mensaje){
         List<Empresa> listaEmpresas=empresaServicio.BuscarTodo();
