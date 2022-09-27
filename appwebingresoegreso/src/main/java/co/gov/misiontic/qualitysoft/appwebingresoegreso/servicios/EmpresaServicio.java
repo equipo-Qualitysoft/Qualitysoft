@@ -6,6 +6,7 @@ import co.gov.misiontic.qualitysoft.appwebingresoegreso.repositorios.EmpresaRepo
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,9 +17,17 @@ public class EmpresaServicio implements IEmpresaServicio {
     @Autowired
     private EmpresaRepository empresaRepository;
     @Override
+
     public List<Empresa> BuscarTodo() {
         List<Empresa> Empresas = (List<Empresa>) empresaRepository.findAll();
         return Empresas;
+    }
+
+    @Override
+    public List<Empresa> getAllEmpresas() {
+        List<Empresa> empresaList = new ArrayList<>();
+        empresaRepository.findAll().forEach(empresa -> empresaList.add(empresa));  //Recorremos el iterable que regresa el metodo findAll del Jpa y lo guardamos en la lista creada
+        return empresaList;
     }
 /*
     @Override

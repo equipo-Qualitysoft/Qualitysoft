@@ -7,14 +7,19 @@ import java.util.Optional;
 
 public interface IUsarioService {
 
+    //Metodo para ver todos los Usuarios registrados
     public List<Usuario> getAllUsuario();
 
+
+    //Metodo para buscar empleados por ID
     public Optional<Usuario> getUsuarioById(Long idUsuario);
 
-    public ArrayList<Usuario> consultarPorEmpresa(Long idUsuario);
+    //Metodo para buscar empleados por empresa
+    public ArrayList<Usuario> obtenerPorEmpresa(Long idEmpresa);
 
-    public boolean saveOrUpdateUsuario(Usuario usuario1);
+    //Metodo para guardar o actualizar registros en Empleados
+    public boolean saveOrUpdateUsuario(Usuario usua);
 
+    //Metodo para eliminar un registro de Empleado por Id
     public boolean deleteUsuario(Long idUsuario);
-
 }

@@ -24,7 +24,7 @@ public class EmpresaController {
     
     @GetMapping ("/VerEmpresas")
     public String viewEmpresas(Model model, @ModelAttribute("mensaje") String mensaje){
-        List<Empresa> listaEmpresas=empresaServicio.BuscarTodo();
+        List<Empresa> listaEmpresas=empresaServicio.getAllEmpresas();
         model.addAttribute("emplist",listaEmpresas);
         model.addAttribute("mensaje",mensaje);
         return "Empresa/verEmpresa"; //Llamamos al HTML

@@ -94,22 +94,26 @@
                                   <th>Id</th>
                                   <th>Nombre</th>
                                   <th>Correo</th>
-                                  <th>Teléfono</th>
-                                  <th>Rol</th>
+                                  <!--<th>Teléfono</th>-->
                                   <th>Empresa</th>
-                                  <!-- <th>Fecha de Ingreso</th> pendiente -->
-                                  <!-- <th>Fecha de Salida</th>-->
+                                  <th>Rol</th>
+                                  <th>Estado</th>
                                   <th>Movimientos</th>
                                   <th>Editar</th>
                                   <th>Eliminar</th>
                               </tr>
-                              <tr th:each="usuario : ${usuarioslist}">
+                              <tr th:each="usuario : ${usualist}">
                                   <td th:text="${usuario.idUsuario}"></td>
                                   <td th:text="${usuario.nombre}"></td>
                                   <td th:text="${usuario.correo}"></td>
-                                  <td th:text="${usuario.telefono}"></td>
-                                  <td th:text="${usuario.rol}"></td>
                                   <td th:text="${usuario.empresa.nombre}"></td>
+                                  <!--<td th:text="${usuario.telefono}"></td>-->
+                                  <td th:text="${usuario.rol}"></td>
+                                  <!--<td th:if="${usuario.rol=='ADMIN'}">Administrativo</td>-->
+                                  <!--<td th:if="${usuario.rol=='USER'}">Operativo</td>-->
+                                  <td th:text="${usuario.estado}"></td>
+                                  <!--<td th:if="${usuario.estado==true}">Activo</td>-->
+                                  <!--<td th:if="${usuario.estado==false}">Inactivo</td>-->
                                   <!-- <td th:text="${usuario.fecha_ingreso}"></td>-->
                                   <!-- <td th:text="${usuario.fecha_salida}"></td>-->
                                   <!-- Pendiente euler crear controldaror segun mi ruta para consultar movimiento por empleado -->

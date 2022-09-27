@@ -14,6 +14,8 @@ public interface IEmpresaServicio {
 
     public List<Empresa> BuscarTodo ();
 
+    public List<Empresa> getAllEmpresas();
+
 /*  public Empresa crearEmpresa  (Empresa empresa);
 
 
