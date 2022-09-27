@@ -1,26 +1,26 @@
 <!doctype html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <!-- MENU DE LA PAGINA -->
-    <div class="menu" th:fragment="html_menu">
-        <a href="./" class="d-block text-light p-3 border-0"><i class="icon ion-ios-home lead mr-2"></i>
-            Homes</a>
+<div class="menu" th:fragment="html_menu">
+    <a  th:href="@{/tablero}" class="d-block text-light p-3 border-0"><i class="icon ion-ios-home lead mr-2"></i>
+        Homes</a>
 
-        <a href="./VerEmpresas" class="d-block text-light p-3 border-0"><i class="icon ion-ios-cube lead mr-2"></i>
-            Empresa</a>
+    <a th:href="@{/VerEmpresas}" class="d-block text-light p-3 border-0"><i class="icon ion-ios-cube lead mr-2"></i>
+        Empresa</a>
 
-        <a href="./VerUsuarios" class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>
-            Usuarios</a>
+    <a  th:href="@{/VerUsuarios}" class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>
+        Usuarios</a>
 
-        <a href="./VerMovimientos" class="d-block text-light p-3 border-0"><i class="ion-ios-cash lead mr-2"></i>
-            Movimientos</a>
-        <a href="./VerClientesProveedores" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
-            Clientes Y Proveedores</a>
-        <a href="./VerArticulos" class="d-block text-light p-3 border-0"><i class="icon ion-ios-apps lead mr-2"></i>
-            Zapatos</a>
-        <a th:href="@{/logout}" class="d-block text-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i>
-            Salir</a>
-    </div>
-    <!-- FIN DE MENU DE LA PAGINA -->
+    <a  th:href="@{/VerMovimientos}" class="d-block text-light p-3 border-0"><i class="ion-ios-cash lead mr-2"></i>
+        Movimientos</a>
+    <a  th:href="@{/VerClientesProveedores}" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
+        Clientes Y Proveedores</a>
+    <a  th:href="@{/VerArticulos}" class="d-block text-light p-3 border-0"><i class="icon ion-ios-apps lead mr-2"></i>
+        Zapatos</a>
+    <a th:href="@{/logout}" class="d-block text-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i>
+        Salir</a>
+</div>
+<!-- FIN DE MENU DE LA PAGINA -->
 
 
 
@@ -76,18 +76,42 @@
 <!-- FIN DE BOTONES EMPRESAS -->
 
 
+<!-- NAVBAR -->
 
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" th:fragment="barra_navegacion" >
+    <div class="container">
 
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline position-relative d-inline-block my-2">
+                <input class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+                <button class="btn position-absolute btn-search" type="submit"><i class="icon ion-md-search"></i></button>
+            </form>
 
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item dropdown show">
+                    <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <img th:src="${user.get('picture')}" th:attr="alt=${user.get('name')}" class="img-fluid rounded-circle avatar mr-2"
+                             alt="https://generated.photos/"  />
+                        <label th:text="${user.get('name')}"></label>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right show" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" th:text="${user.get('email')}"></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/logout}">Cerrar sesión</a>
+                    </div>
+                </li>
+            </ul>
 
+        </div>
+    </div>
+</nav>
 
-
-
-
-
-
-
+<!--FIN NAVBAR -->
 
 
 
@@ -148,10 +172,10 @@
                             <a href="./VerClientesProveedores" class="btn btn-primary w-100 align-self-center">Ver Clientes y/o Poveedores</a>
                         </div>
                     </div>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </section>
 

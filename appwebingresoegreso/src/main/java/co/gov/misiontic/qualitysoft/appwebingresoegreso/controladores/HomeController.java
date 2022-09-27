@@ -65,6 +65,7 @@ public class HomeController {
         List<MovimientoDinero> movimientos = this.movimientoService.getMovimientoDineroList();
         model.addAttribute("movimientos",  movimientos);
         model.addAttribute("mensaje",  mensaje);
+        model.addAttribute("user", usuarioLogueado);
         return "MovimientoDinero/verMovimiento";
     }
 
@@ -72,6 +73,7 @@ public class HomeController {
     public String verArticulos(Model model) {
         List<Articulo> articulos = this.articuloService.getAllArticulos();
         model.addAttribute("articulos",  articulos);
+        model.addAttribute("user", usuarioLogueado);
         return "Articulos/verArticulos";
     }
 
@@ -84,6 +86,7 @@ public class HomeController {
             System.out.println("No hay clientes o proveedores registrados");
         }
         model.addAttribute("clientesProveedores",  clientesProveedores);
+        model.addAttribute("user", usuarioLogueado);
         return "ClientesProveedores/verClientesProveedores";
     }
 
