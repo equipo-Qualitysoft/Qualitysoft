@@ -93,13 +93,13 @@
             </form>
 
             <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item dropdown show">
-                    <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                <li class="nav-item dropdown ">
+                    <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <img th:src="${user.get('picture')}" th:attr="alt=${user.get('name')}" class="img-fluid rounded-circle avatar mr-2"
                              alt="https://generated.photos/"  />
                         <label th:text="${user.get('name')}"></label>
                     </a>
-                    <div class="dropdown-menu dropdown-menu-right show" aria-labelledby="navbarDropdown">
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#" th:text="${user.get('email')}"></a>
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" th:href="@{/logout}">Cerrar sesión</a>
@@ -180,4 +180,13 @@
 </section>
 
 <!-- FIN DE BOTONES CLIENTES/PROVEDORES -->
+
+<!-- Sidebar -->
+<div id="sidebar-container" class="bg-primary" th:fragment="logo_camina">
+    <div class="logo">
+        <h4 class="text-light font-weight-bold mb-0">Camina con Estilo</h4>
+    </div>
+    <div th:replace="fragments :: html_menu" >             </div>
+</div>
+<!-- Fin sidebar -->
 </html>

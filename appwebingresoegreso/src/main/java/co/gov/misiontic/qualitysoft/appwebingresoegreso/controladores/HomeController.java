@@ -28,6 +28,8 @@ public class HomeController {
     IClienteProveedorService clienteProveedorService;
     Map<String, Object> usuarioLogueado;
 
+
+
     @Autowired
     ClienteProveedorRepository clienteRepository;
 
