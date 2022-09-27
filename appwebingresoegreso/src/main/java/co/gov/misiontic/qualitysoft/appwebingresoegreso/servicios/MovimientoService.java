@@ -55,11 +55,12 @@ public class MovimientoService implements IMovimientoService {
         return movimientoRepository.save(nuevoMovimiento);
     }
 
-    @Override
-    public MovimientoDinero updateMovimiento(MovimientoDinero movimiento) {
-        return movimientoRepository.save(movimiento);
-    }
-
+//
+//    @Override
+//    public MovimientoDinero updateMovimiento(MovimientoDinero movimiento) {
+//        return movimientoRepository.save(movimiento);
+//    }
+//
 
     // TERMINAR DE IMPELMENTAR
     public MovimientoDinero updateMovimientoById(Long idMovimiento, MovimientoDinero movimiento) {
@@ -80,5 +81,20 @@ public class MovimientoService implements IMovimientoService {
     public List<MovimientoDinero> getMovimientoListByUsuario(Long idUsuario) {
         System.out.println("idUsuario: " + idUsuario);
         return movimientoRepository.findByUsuario(idUsuario);
+    }
+
+    @Override
+    public boolean saveOrUpdateMovimiento(MovimientoDinero movimiento) {
+        if (movimiento.getMonto() > 0) {
+            movimiento.setConcepto("VENTA");
+        }  else if (movimiento.getMonto() < 0) {
+            movimiento.setConcepto("COMPRA");
+
+        }
+        MovimientoDinero mov= movimientoRepository.save(movimiento);
+        if (movimientoRepository.findById(mov.getIdMovimiento())!=null){
+            return true;
+        }
+        return false;
     }
 }

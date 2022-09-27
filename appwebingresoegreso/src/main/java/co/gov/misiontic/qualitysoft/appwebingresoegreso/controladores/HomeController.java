@@ -60,7 +60,7 @@ public class HomeController {
     }
 
 
-    @GetMapping("/verMovimiento")
+    @GetMapping("/VerMovimientos")
     public String viewMovimiento(Model model,@ModelAttribute("mensaje") String mensaje) {
         List<MovimientoDinero> movimientos = this.movimientoService.getMovimientoDineroList();
         model.addAttribute("movimientos",  movimientos);
@@ -68,7 +68,7 @@ public class HomeController {
         return "MovimientoDinero/verMovimiento";
     }
 
-    @GetMapping("/verArticulos")
+    @GetMapping("/VerArticulos")
     public String verArticulos(Model model) {
         List<Articulo> articulos = this.articuloService.getAllArticulos();
         model.addAttribute("articulos",  articulos);
@@ -76,7 +76,7 @@ public class HomeController {
     }
 
 
-    @GetMapping("/verClientesProveedores")
+    @GetMapping("/VerClientesProveedores")
     public String verClienteProveedor(Model model) {
         //List<ClienteProveedor> clientesProveedores = this.clienteProveedorService.getAllClientesProveedores();
         List<ClienteProveedor> clientesProveedores = clienteRepository.findAll();

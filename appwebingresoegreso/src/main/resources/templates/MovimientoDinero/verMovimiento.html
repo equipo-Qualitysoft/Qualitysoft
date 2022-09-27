@@ -1,5 +1,5 @@
 <!doctype html >
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 
 <head>
     <!-- Required meta tags -->
@@ -31,15 +31,14 @@
             <div class="logo">
                 <h4 class="text-light font-weight-bold mb-0">QualitySoft</h4>
             </div>
-            <div th:replace="fragments :: html_menu" >
-            </div>
+            <div th:replace="fragments :: html_menu" >             </div>
         </div>
         <!-- Fin sidebar -->
 
         <div class="w-100">
 
          <!-- Navbar -->
-         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
             <div class="container">
     
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -65,8 +64,8 @@
           </nav>
           <!-- Fin Navbar -->
 
-        <!-- Page Content -->
-        <div id="content" class="bg-grey w-100">
+            <!-- Page Content -->
+            <div id="content" class="bg-grey w-100">
 
               <section class="bg-light py-3">
                   <div class="container">
@@ -79,17 +78,16 @@
                   </div>
               </section>
 
-            <section th:replace="fragments :: botones_movimientos" >
-
-            </section>
+            <section th:replace="fragments :: botones_movimientos" >             </section>
 
 
-              <section>
+            <section>
                   <div class="container">
                       <div class="row">
                           <div class="col-lg-12 my-3">
                               <!-- TABLAS Y FORMULARIOS -->
-                              <br><table class="table table-striped">
+                              <br>
+                              <table class="table table-striped">
                                     <tr>
                                       <th>Id</th>
                                       <th>Concepto</th>
@@ -118,7 +116,7 @@
                                       <td th:text="${movimiento.empresa.nombre}"></td>
 
                                       <td>
-                                          <a th:href="@{/editarMovimiento/{id}(id=${movimiento.idMovimiento})}">
+                                          <a th:href="@{/EditarMovimiento/{id}(id=${movimiento.idMovimiento})}">
                                               <button type="button" class="btn btn-warning">
                                                   <i class="icon ion-ios-create lead mr-2">
                                                   </i> Editar
@@ -127,7 +125,7 @@
                                       </td>
 
                                       <td>
-                                          <form th:action="@{/verMovimiento/{id}(id=${movimiento.idMovimiento})}" th:method="delete">
+                                          <form th:action="@{/VerMovimientos/{id}(id=${movimiento.idMovimiento})}" th:method="delete">
                                               <button type="submit"  class="btn btn-danger">
                                                   <i class="icon ion-ios-create lead mr-2">
                                                   </i> Eliminar
@@ -135,7 +133,7 @@
                                           </form>
                                       </td>
                                   </tr>
-                                </table>
+                              </table>
 
 
                               <!-- boton que me lleva a la lista de empresas/ definir si se deja boton o no-->
@@ -148,12 +146,11 @@
                           </div>
 
                       </div>
-                    </div>
-              </section>
-
+                  </div>
+            </section>
+          </div>
         </div>
 
-        </div>
     </div>
     <script th:inline="javascript">
     window.onload=function(){
@@ -179,7 +176,7 @@
         }
 
     }
-</script>
+    </script>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
