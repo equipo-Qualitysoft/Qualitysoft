@@ -97,7 +97,7 @@
                                   <th>Dirección</th>
                                   <th>Telefono</th>
                                   <th>nit</th>
-                                  <th>Empleados</th>
+                                  <th>Usuarios</th>
                                   <th>Movimientos</th>
                                   <th>Editar</th>
                                   <th>Eliminar</th>
@@ -115,7 +115,7 @@
                                   <!-- <td th:text="${usuario.fecha_ingreso}"></td>-->
                                   <!-- <td th:text="${usuario.fecha_salida}"></td>-->
                                   <!-- Pendiente euler crear controldaror segun mi ruta para consultar movimiento por empleado -->
-                              <td><a th:href="@{/Empresa/{idEmpresa}/Empleados (idEmpresa=${empresa.idEmpresa})}"><button type="button" class="btn btn-info"><i class="icon ion-ios-eye lead mr-2"></i>Ver</button></a></td>
+                              <td><a th:href="@{/Empresa/{idEmpresa}/Usuarios(idEmpresa=${empresa.idEmpresa})}"><button type="button" class="btn btn-info"><i class="icon ion-ios-eye lead mr-2"></i>Ver</button></a></td>
                               <td><a th:href="@{/Empresa/{idEmpresa}/Movimientos (idEmpresa=${empresa.idEmpresa})}"><button type="button" class="btn btn-info"><i class="icon ion-ios-eye lead mr-2"></i>Ver</button></a></td>
                               <td><a th:href="@{/EditarEmpresa/{idEmpresa}(idEmpresa=${empresa.idEmpresa})}"><button type="button" class="btn btn-warning"><i class="icon ion-ios-create lead mr-2"></i>Editar</button></a></td>
                               <td><a th:href="@{/EliminarEmpresa/{idEmpresa}(idEmpresa=${empresa.idEmpresa})}"><button type="button" class="btn btn-danger"><i class="icon ion-ios-trash lead mr-2"></i>Eliminar</button></a></td>

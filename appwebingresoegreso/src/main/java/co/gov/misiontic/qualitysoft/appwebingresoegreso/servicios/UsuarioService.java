@@ -16,33 +16,31 @@ public class UsuarioService implements IUsarioService{
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public List<Usuario> getAllUsuario(){
-        List<Usuario> usuarioList = new ArrayList<>();
+    //Metodo para ver todos los usuarios registrados
+    public List<Usuario> getAllUsuario() {
+        List<Usuario> usuarioList=new ArrayList<>();
         usuarioRepository.findAll().forEach(usuario -> usuarioList.add(usuario));
         return usuarioList;
     }
-
-    public Optional<Usuario> getUsuarioById(Long idUsuario){
+    //Metodo pata buscar usuario por id
+    public Optional<Usuario> getUsuarioById(Long idUsuario) {
         return usuarioRepository.findById(idUsuario);
     }
-
-    public ArrayList<Usuario> consultarPorEmpresa(Long idEmpresa){
-        return usuarioRepository.findByusuario(idEmpresa);
+    //Metodo para buscar usuario por empresa
+    public ArrayList<Usuario> obtenerPorEmpresa(Long idEmpresa) {
+        return usuarioRepository.findByEmpresa(idEmpresa );
     }
-
-    public boolean saveOrUpdateUsuario(Usuario usuario1){
-        Usuario user=usuarioRepository.save(usuario1);
-        if (usuarioRepository.findById(user.getIdUsuario())!=null){
+    //Metodo para guardar o actualizar usuario
+    public boolean saveOrUpdateUsuario(Usuario usua) {
+        Usuario usu=usuarioRepository.save(usua);
+        if (usuarioRepository.findById(usu.getIdUsuario())!=null){
             return true;
         }
         return false;
     }
 
-    public Usuario  createUser(Usuario newUser){
-        return usuarioRepository.save(newUser);
-    }
-
-    public boolean deleteUsuario(Long idUsuario){
+    //Metodo pata eliminar registro de usuario por id
+    public boolean deleteUsuario(Long idUsuario) {
         usuarioRepository.deleteById(idUsuario);
         if (this.usuarioRepository.findById(idUsuario).isPresent()){
             return false;
@@ -50,18 +48,7 @@ public class UsuarioService implements IUsarioService{
         return true;
     }
 
-    public Usuario getOrCreateUser(Map<String, Object> userData){
-        String email = (String) userData.get("email");
-        Usuario usuario = usuarioRepository.findByCorreo(email);
-        if(usuario == null){
-            String name = (String) userData.get("name");
-            String image = (String) userData.get("image");
-            String auth0id = (String) userData.get("sub");
-
-            Usuario newUser = new Usuario(email=email, image=image, auth0id= auth0id);
-            return createUser(newUser);
-        }
-        System.out.println(usuario.getCorreo());
-        return usuario;
-    }
 }
+
+
+

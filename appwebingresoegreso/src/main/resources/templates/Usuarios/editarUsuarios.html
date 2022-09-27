@@ -91,7 +91,7 @@
                           <div class="col-lg-12 my-3">
                               <!-- TABLAS Y FORMULARIOS -->
                               <!--Crear formulario para llenar los datos del usuario y guardarlo en el objeto user -->
-                              <form th:action="@{/ActualizarUsuario}" th:object="${user}" method="post">
+                              <form th:action="@{/ActualizarUsuario}" th:object="${usua}" method="post">
 
                                   <!--Campo para idUsuario de solo lectura-->
                                   <div class="row">
@@ -101,7 +101,6 @@
                                               <input type="text" th:field="*{idUsuario}" class="form-control" id="idUsuario" required="required" readonly></div>
                                       </div>
                                   </div>
-
                                   <!--Campo para nombre-->
                                   <div class="row">
                                       <div class="form-group col-md-12">
@@ -111,68 +110,62 @@
                                       </div>
                                   </div>
 
-                                  <!--Campo para imagen-->
-                                  <div class="row form-group">
-                                      <div class="form-group col-md-12">
-                                          <label class="col-md-3" for="imagen">Imagen:</label>
-                                          <div class="col-md-6">
-                                              <input type="file" th:field="*{imagen}" class="form-control" id="imagen" required="required"></div>
-                                      </div>
-                                  </div>
                                   <!--Campo para correo-->
-                                  <div class="row ">
+                                  <div class="row">
                                       <div class="form-group col-md-12">
-                                          <label class="col-md-3" for="correo">Correo:</label>
+                                          <label class="col-md-3" for="correo">Correo electronico:</label>
                                           <div class="col-md-6">
                                               <input type="email" th:field="*{correo}" class="form-control" id="correo" required="required"></div>
                                       </div>
                                   </div>
 
                                   <!--Campo para telefono-->
-                                  <div class="row">
+                                  <!---<div class="row">
                                       <div class="form-group col-md-12">
-                                          <label class="col-md-3" for="telefono">Telefono:</label>
+                                          <label class="col-md-3" for="telefono">Teléfono:</label>
                                           <div class="col-md-6">
                                               <input type="number" th:field="*{telefono}" class="form-control" id="telefono" required="required"></div>
                                       </div>
-                                  </div>
+                                  </div>-->
 
-                                  <!--Campo para contraseña-->
-                                  <div class="row">
-                                      <div class="form-group col-md-12">
-                                          <label class="col-md-3" for="clave">Contraseña de acceso:</label>
-                                          <div class="col-md-6">
-                                              <input type="password" th:field="*{clave}" class="form-control" id="clave" required="required"></div>
-                                      </div>
-                                  </div>
-
-                                  <!--Campo para Rol-->
-                                  <div class="row">
-                                      <div class="form-group col-md-12">
-                                          <label class="col-md-3" for="rol">Rol del Usuario:</label>
-                                          <div class="col-md-6">
-                                              <select th:field="*{rol}" class="form-control" id="rol" required="required">
-                                                  <option th:value='ROLE_ADMIN'>Administrativo</option>
-                                                  <option th:value='ROLE_USER'>Operativo</option>
-                                              </select>
-                                          </div>
-                                      </div>
-                                  </div>
                                   <!--Campo para empresa-->
                                   <div class="row">
                                       <div class="form-group col-md-12">
                                           <label class="col-md-3" for="empresa">Empresa a la que pertence:</label>
                                           <div class="col-md-6">
                                               <select th:field="*{empresa}" class="form-control" id="empresa" required="required">
-                                                  <option th:each="empresa : ${empresaslist}" th:text="${empresa.nombre}" th:value="${empresa.idEmpresa}"></option>
+                                                  <option th:each="empresa : ${emprelist}" th:text="${empresa.nombre}" th:value="${empresa.idEmpresa}"></option>
                                               </select>
                                           </div>
                                       </div>
                                   </div>
+
+                                  <!--Campo para Rol-->
+                                  <div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="rol">Rol:</label>
+                                          <div class="col-md-6">
+                                              <select th:field="*{rol}" class="form-control" id="rol" required="required">
+                                                  <option th:value='ADMIN'>Administrativo</option>
+                                                  <option th:value='USER'>Operativo</option>
+                                              </select>
+                                          </div>
+                                      </div>
+                                  </div>
+
+                                  <!--Campo para contraseña-->
+                                  <!--<div class="row">
+                                      <div class="form-group col-md-12">
+                                          <label class="col-md-3" for="clave">Contraseña de acceso:</label>
+                                          <div class="col-md-6">
+                                              <input type="password" th:field="*{clave}" class="form-control" id="clave" required="required"></div>
+                                      </div>
+                                  </div>-->
+
                                   <!--Campo para Estado-->
                                   <div class="row">
                                       <div class="form-group col-md-12">
-                                          <label class="col-md-3" for="estado">Estado actual del Usuario:</label>
+                                          <label class="col-md-3" for="estado">Estado actual:</label>
                                           <div class="col-md-6">
                                               <select th:field="*{estado}" class="form-control" id="estado" required="required">
                                                   <option th:value=true>Activo</option>
@@ -181,6 +174,7 @@
                                           </div>
                                       </div>
                                   </div>
+
                                   <!--Boton para enviar todo y ejecutar accion -->
                                   <div class="row">
                                       <div class="col-md-2">
