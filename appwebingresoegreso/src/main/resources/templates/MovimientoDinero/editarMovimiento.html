@@ -96,7 +96,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="col-md-3" for="idMovimiento">ID del Movimiento:</label>
                                         <div class="col-md-6">
-                                            <input type="text" th:field="*{idMovimiento}" class="form-control" id="idMovimiento" required="required" readonly>
+                                            <input name="idMovimiento" type="text" th:field="*{idMovimiento}" class="form-control" id="idMovimiento" required="required" readonly>
 
                                         </div>
                                     </div>
@@ -107,7 +107,7 @@
                                         <label class="col-md-3" for="articulo">Zapato:</label>
                                         <div class="col-md-6">
                                             <select name="articulo" class="form-control" id="articulo" required="required">
-                                                <option th:each="zapato : ${articulos}" th:text="${zapato.descripcion}" th:value="${zapato.idArticulo }"></option>
+                                                <option th:each="zapato : ${articulos}" th:text="${zapato.descripcion}" th:value="${zapato.idArticulo }" th:selected="${mov.articulo.descripcion}" ></option>
                                             </select>
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="col-md-3" for="monto">Monto:</label>
                                         <div class="col-md-6">
-                                            <input type="number" th:field="*{monto}" class="form-control" id="monto" required="required" >
+                                            <input  name="monto" type="number" th:field="*{monto}" class="form-control" id="monto" required="required" >
                                         </div>
                                     </div>
                                 </div>
@@ -127,7 +127,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="col-md-3" for="concepto">Concepto:</label>
                                         <div class="col-md-6">
-                                            <input type="text" th:field="*{concepto}" class="form-control" id="concepto" required="required" readonly>
+                                            <input name="concepto" type="text" th:field="*{concepto}" class="form-control" id="concepto" required="required" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="col-md-3" for="fecha">Fecha:</label>
                                         <div class="col-md-6">
-                                            <input type="date" th:field="*{fecha}" class="form-control" id="fecha" required="required"></div>
+                                            <input name="fecha" type="date" th:field="*{fecha}" class="form-control" id="fecha" required="required"></div>
                                     </div>
                                 </div>
 
@@ -146,7 +146,7 @@
                                         <label class="col-md-3" for="usuario">Usuario:</label>
                                         <div class="col-md-6">
                                             <select name="usuario" class="form-control" id="usuario" required="required">
-                                                <option th:each="user : ${users}" th:text="${user.nombre}" th:value="${user.idUsuario}" th:field="*{usuario.nombre}" ></option>
+                                                <option th:each="user : ${users}" th:text="${user.nombre}" th:value="${user.idUsuario}" th:selected="${mov.usuario.nombre}" ></option>
                                             </select>
 
                                         </div>
@@ -157,7 +157,7 @@
                                     <div class="form-group col-md-12">
                                         <label class="col-md-3" for="empresa">Empresa:</label>
                                         <div class="col-md-6">
-                                            <input type="text" th:field="*{empresa.nombre}" class="form-control" id="empresa" required="required" readonly>
+                                            <input name="empresa" type="text" th:field="*{empresa.nombre}" class="form-control" id="empresa" required="required" readonly>
                                         </div>
 
                                     </div>

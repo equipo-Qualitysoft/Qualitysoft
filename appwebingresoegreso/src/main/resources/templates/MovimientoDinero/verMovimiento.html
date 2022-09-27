@@ -109,11 +109,11 @@
                                       <td th:text="${movimiento.articulo.descripcion}"></td>
                                       <td th:text="${movimiento.usuario.nombre}"></td>
                                       <td>
-<!--                                            <span th:if="${movimiento.clienteProveedor.isTipoCP()}"> Cliente</span>-->
-<!--                                            <span th:unless="${movimiento.clienteProveedor.isTipoCP()}">Proveedor</span>-->
+                                            <span th:if="${movimiento.clienteProveedor.isTipoCP()}"> Cliente</span>
+                                            <span th:unless="${movimiento.clienteProveedor.isTipoCP()}">Proveedor</span>
                                       </td>
-<!--                                      <td th:text="${movimiento.clienteProveedor.getNombre()}"> </td>"-->
-<!--                                      <td th:text="${movimiento.empresa.nombre}"></td>-->
+                                      <td th:text="${movimiento.clienteProveedor.getNombre()}"> </td>"
+                                      <td th:text="${movimiento.empresa.nombre}"></td>
 
                                       <td>
                                           <a th:href="@{/EditarMovimiento/{id}(id=${movimiento.idMovimiento})}">
