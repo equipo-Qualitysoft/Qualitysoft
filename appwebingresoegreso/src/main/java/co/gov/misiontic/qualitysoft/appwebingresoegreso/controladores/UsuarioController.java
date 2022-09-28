@@ -5,6 +5,8 @@ import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.Usuario;
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.IEmpresaServicio;
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.IUsarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class UsuarioController {
@@ -22,11 +25,15 @@ public class UsuarioController {
     private IUsarioService usuarioService;
     @Autowired
     private IEmpresaServicio empresaServicio;
+
+    Map<String, Object> usuarioLogueado;
     @GetMapping("/VerUsuarios")
-    public String viewUsuarios(Model model, @ModelAttribute("mensaje") String mensaje){
+    public String viewUsuarios(Model model, @ModelAttribute("mensaje") String mensaje, @AuthenticationPrincipal OidcUser principal){
         List<Usuario> listaUsuarios=usuarioService.getAllUsuario();
+        usuarioLogueado = principal.getClaims();
         model.addAttribute("usualist",listaUsuarios);
         model.addAttribute("mensaje",mensaje);
+        model.addAttribute("user", usuarioLogueado);
         return "Usuarios/verUsuarios";
     }
 
@@ -37,6 +44,7 @@ public class UsuarioController {
         model.addAttribute("mensaje",mensaje);
         List<Empresa> listaEmpresas=empresaServicio.getAllEmpresas(); //confirmar con nicolas
         model.addAttribute("emprelist", listaEmpresas);
+        model.addAttribute("user", usuarioLogueado);
         return "Usuarios/agregarUsuarios";
     }
 
@@ -60,6 +68,7 @@ public class UsuarioController {
         model.addAttribute("mensaje", mensaje);
         List<Empresa> listaEmpresas=empresaServicio.getAllEmpresas(); //confirmar con nicolas
         model.addAttribute("emprelist", listaEmpresas);
+        model.addAttribute("user", usuarioLogueado);
         return "Usuarios/editarUsuarios";
     }
 
@@ -90,6 +99,7 @@ public class UsuarioController {
     public String verUsuariosPorEmpresa(@PathVariable("idEmpresa") Long idEmpresa, Model model){
         List<Usuario> listaUsuarios =usuarioService.obtenerPorEmpresa(idEmpresa);
         model.addAttribute("usualist",listaUsuarios);
+        model.addAttribute("user", usuarioLogueado);
         return "Usuarios/verUsuarios";
     }
 }

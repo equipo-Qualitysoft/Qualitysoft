@@ -7,6 +7,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.oidc.user.OidcUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 //@RequestMapping("/movimiento")
@@ -33,6 +36,8 @@ public class MovimientoController {
 
     @Autowired
     private IClienteProveedorService clienteProveedorService;
+
+    Map<String, Object> usuarioLogueado;
 
     public MovimientoController(MovimientoService movimientoService) {
         this.movimientoService = movimientoService;
@@ -83,10 +88,10 @@ public class MovimientoController {
 
     // CIRREGIR DESDE AQUI
         @GetMapping("/AgregarMovimiento")
-    public String nuevoMovimiento(Model model, @ModelAttribute("mensaje") String mensaje){
+    public String nuevoMovimiento(Model model, @ModelAttribute("mensaje") String mensaje, @AuthenticationPrincipal OidcUser principal){
         MovimientoDinero mov = new MovimientoDinero();
         mov.setFecha(LocalDate.now());
-
+        usuarioLogueado = principal.getClaims();
         List <Usuario> users = usuarioService.getAllUsuario();
         List <Empresa> empresas = empresaServicio.BuscarTodo();
         List<Articulo> articulos = articuloService.getAllArticulos();
@@ -95,7 +100,7 @@ public class MovimientoController {
         model.addAttribute("empresas", empresas);
         model.addAttribute("articulos", articulos);
         model.addAttribute("clientes", clientes);
-
+        model.addAttribute("user", usuarioLogueado);
         model.addAttribute("mov",mov);
         model.addAttribute("mensaje",mensaje);
            System.out.println("HA INGRESADO A ****  @GetMapping(AgregarMovimiento)");
@@ -127,6 +132,7 @@ public class MovimientoController {
         model.addAttribute("users", users);
         model.addAttribute("empresas", empresas);
         model.addAttribute("articulos", articulos);
+        model.addAttribute("user", usuarioLogueado);
         System.out.println("HA INGRESADO A EDITAR  movimiento");
 
         return "MovimientoDinero/editarMovimiento";
