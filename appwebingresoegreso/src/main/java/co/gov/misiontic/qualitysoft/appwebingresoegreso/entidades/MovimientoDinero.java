@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.Setter;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
+import org.springframework.format.annotation.NumberFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -20,6 +21,7 @@ public class MovimientoDinero {
     private Long idMovimiento;
     @Column(name = "concepto")
     private String concepto;
+
     @Column(name = "monto")
     private float monto;
 

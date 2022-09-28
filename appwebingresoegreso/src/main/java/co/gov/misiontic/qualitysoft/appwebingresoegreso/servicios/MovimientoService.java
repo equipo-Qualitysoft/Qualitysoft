@@ -85,12 +85,15 @@ public class MovimientoService implements IMovimientoService {
 
     @Override
     public boolean saveOrUpdateMovimiento(MovimientoDinero movimiento) {
-        if (movimiento.getMonto() > 0) {
+        if (movimiento.getMonto() > 0){
             movimiento.setConcepto("VENTA");
-        }  else if (movimiento.getMonto() < 0) {
+         //   movimiento.getClienteProveedor().setTipoCP(true);
+        }else {
             movimiento.setConcepto("COMPRA");
-
+       //     movimiento.getClienteProveedor().setTipoCP(false);
         }
+        movimiento.setEmpresa(movimiento.getUsuario().getEmpresa());
+
         MovimientoDinero mov= movimientoRepository.save(movimiento);
         if (movimientoRepository.findById(mov.getIdMovimiento())!=null){
             return true;

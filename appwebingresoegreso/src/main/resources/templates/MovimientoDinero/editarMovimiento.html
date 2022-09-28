@@ -106,8 +106,8 @@
                                     <div class="form-group col-md-12">
                                         <label class="col-md-3" for="articulo">Zapato:</label>
                                         <div class="col-md-6">
-                                            <select name="articulo" class="form-control" id="articulo" required="required">
-                                                <option th:each="zapato : ${articulos}" th:text="${zapato.descripcion}" th:value="${zapato.idArticulo }" th:selected="${mov.articulo.descripcion}" ></option>
+                                            <select th:field="*{articulo}" class="form-control" id="articulo" required="required">
+                                                <option th:each="zapato : ${articulos}" th:text="${zapato.descripcion}" th:value="${zapato.idArticulo }"  ></option>
                                             </select>
                                         </div>
                                     </div>
@@ -145,8 +145,8 @@
                                     <div class="form-group col-md-12">
                                         <label class="col-md-3" for="usuario">Usuario:</label>
                                         <div class="col-md-6">
-                                            <select name="usuario" class="form-control" id="usuario" required="required">
-                                                <option th:each="user : ${users}" th:text="${user.nombre}" th:value="${user.idUsuario}" th:selected="${mov.usuario.nombre}" ></option>
+                                            <select th:field="*{usuario}" class="form-control" id="usuario" required="required">
+                                                <option th:each="user : ${users}" th:text="${user.nombre}" th:value="${user.idUsuario}"  ></option>
                                             </select>
 
                                         </div>

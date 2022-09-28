@@ -4,6 +4,7 @@ import co.gov.misiontic.qualitysoft.appwebingresoegreso.entidades.*;
 import co.gov.misiontic.qualitysoft.appwebingresoegreso.servicios.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -103,10 +104,7 @@ public class MovimientoController {
 
     @PostMapping("/GuardarMovimiento")
     public String guardarMovimiento(MovimientoDinero movimiento, RedirectAttributes redirectAttributes){
-        if (movimiento.getMonto()>0)            movimiento.setConcepto("VENTA");
-        else if (movimiento.getMonto()<0)       movimiento.setConcepto("COMPRA");
-
-        if(movimientoService.saveOrUpdateMovimiento(movimiento)==true){
+            if(movimientoService.saveOrUpdateMovimiento(movimiento)==true){
             redirectAttributes.addFlashAttribute("mensaje","saveOK");
             System.out.println("HA INGRESADO A GUARDAR movimiento");
             return "redirect:/VerMovimientos";
@@ -138,14 +136,10 @@ public class MovimientoController {
     public String updateMovimiento(@ModelAttribute("emp") @DateTimeFormat(pattern="YYYY-MM-DD") MovimientoDinero mov, RedirectAttributes redirectAttributes){
         if(movimientoService.saveOrUpdateMovimiento(mov)){
             redirectAttributes.addFlashAttribute("mensaje","updateOK");
-            System.out.println("HA INGRESADO A ACTUALIZAR movimiento");
-
             return "redirect:/VerMovimientos";
 
         }
         redirectAttributes.addFlashAttribute("mensaje","updateError");
-        System.out.println("HA INGRESADO A ACTUALIZAR movimiento ERROR");
-
         return "redirect:/EditarMovimiento"+ mov.getIdMovimiento();
 
     }
