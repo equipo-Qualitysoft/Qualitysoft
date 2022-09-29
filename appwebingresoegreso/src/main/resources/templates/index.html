@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <title>App Camina con Estilo</title>
+</head>
+<body>
+<main>
+    <div class="px-4 py-5 my-5 text-center">
+        <!--<img class="" src="https://getbootstrap.com/docs/5.2/assets/brand/bootstrap-logo-shadow.png" height="100"> -->
+        <img src="img/shoes.jpg"class="d-block mx-auto mb-4" height="400" alt="Shoes" />
+        <h1 class="display-5 fw-bold">App Zapatos</h1>
+        <div class="col-lg-6 mx-auto">
+            <p class="lead mb-4">Camina con estilo</p>
+            <div sec:authorize="!isAuthenticated()">
+                <!-- CAMBIAR LOGIN AQUI -->
+                <a th:href="@{oauth2/authorization/auth0}" type="button" class="btn btn-primary btn-lg px-4 gap-3">Iniciar Sesion</a>
+                <!--a href="/login" type="button" class="btn btn-primary btn-lg px-4 gap-3">Iniciar Sesion</a-->
+            </div>
+            <div sec:authorize="isAuthenticated()">
+                <p>Tu estas logueado!</p>
+<!--                <h3 th:text="'Bienvenido ' + ${profile.get('name')}"></h3>-->
+<!--                <h3 th:text="'Bienvenido ' + ${user.getNombre()}"></h3>-->
+                <h3 th:text="'Bienvenido ' + ${user.get('name')}"></h3>
+                
+                <a th:href="@{/tablero}" type="button" class="btn btn-primary btn-lg px-4 gap-3">Llevame a la aplicacion</a>
+            </div>
+            <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                <a th:href="@{/logout}" type="button" class="btn btn-outline-secondary ">Log Out</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+</body>
+</html>

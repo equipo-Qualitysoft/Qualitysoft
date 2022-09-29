@@ -1,0 +1,139 @@
+<!doctype html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!-- Styles -->
+     <!--<link rel="stylesheet" href="assets/css/style.css"> -->
+     <link  rel="stylesheet"  th:href="@{/css/style.css}"/>
+
+     <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,700&display=swap" rel="stylesheet">
+
+    <!-- Ionic icons -->
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+    <title>Dashboard - QualitySoft</title>
+</head>
+
+<body>
+    <div class="d-flex" id="content-wrapper">
+
+        <!-- Sidebar -->
+        <div th:replace="fragments :: logo_camina" >
+
+        </div>
+        <!-- Fin sidebar -->
+
+        <div class="w-100">
+
+         <!-- Navbar -->
+            <nav  th:replace="fragments :: barra_navegacion">
+
+            </nav>
+          <!-- Fin Navbar -->
+
+        <!-- Page Content -->
+        <div id="content" class="bg-grey w-100">
+
+              <section class="bg-light py-3">
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-9 col-md-8">
+                            <h1 class="font-weight-bold mb-0">Clientes y Proveedores</h1>
+                            <p class="lead text-muted">Lista de Clientes y Proveedores</p>
+                          </div>                         
+                      </div>
+                  </div>
+              </section>
+
+<!--            <section th:replace="fragments :: botones_clientes_proveedores" >-->
+
+            </section>
+
+              <section>
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-lg-12 my-3">
+                              <!-- TABLAS Y FORMULARIOS -->
+                              <br><table class="table table-striped">
+                                    <tr>
+                                      <th>Id</th>
+                                      <th>Nombre</th>
+                                      <th>Direccion</th>
+                                      <th>Telefono</th>
+                                      <th>Tipo</th>
+
+                                    </tr>
+                                    <tr th:each="clienteProveedor : ${clientesProveedores}">
+                                          <td th:text="${clienteProveedor.idClienteProveedor}"></td>
+                                          <td th:text="${clienteProveedor.nombre}"></td>
+                                          <td th:text="${clienteProveedor.direccion}"></td>
+                                          <td th:text="${clienteProveedor.telefono}"></td>
+                                          <td>  <span th:if="${clienteProveedor.tipoCP}"> Cliente</span>
+                                                <span th:unless="${clienteProveedor.tipoCP}">Proveedor</span>
+                                          </td>
+                                    </tr>
+                                </table>
+
+
+                              <!-- FIN TABLAS Y FORMULARIOS -->
+                          </div>
+
+                      </div>
+                    </div>
+              </section>
+
+        </div>
+
+        </div>
+    </div>
+    <script th:inline="javascript">
+    window.onload=function(){
+
+        var msg= [[${mensaje}]];
+        if (msg == "saveOK"){
+            Command : toastr["success"]("Movimiento registrado con éxito!")
+            }
+        else if (msg == "updateOK"){
+            Command : toastr["success"]("Movimiento actualizado con éxito!")
+        }
+        else if (msg == "deleteOK"){
+            Command : toastr["error"]("Movimiento eliminado con éxito!")
+        }
+        else if (msg == "deleteError"){
+            Command : toastr["error"]("El Movimiento  no ha sido eliminado!")
+        }
+        toastr.options={
+            "positionClass": "toast-top-right",
+            "showDuration":"300",
+            "showMethod":"fadeIn",
+            "hideMethod":"fadeOut",
+        }
+
+    }
+</script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+       
+</body>
+
+</html>

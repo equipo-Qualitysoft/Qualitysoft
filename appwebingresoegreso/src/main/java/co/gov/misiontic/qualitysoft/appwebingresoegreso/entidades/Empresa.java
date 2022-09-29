@@ -37,7 +37,7 @@ public class Empresa {
         this.nit = nit;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.fecha =LocalDate.now();;
+        this.fecha = LocalDate.now();;
     }
 
 

@@ -11,6 +11,9 @@ import java.util.ArrayList;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Query(value="select * from usuarios e where empresa_id = :id", nativeQuery = true)
-    public abstract ArrayList<Usuario> findByusuario(@Param("id") Long id);
+    public abstract ArrayList<Usuario> findByEmpresa(@Param("id") Long idEmpresa);
+
+
+    public Usuario findByCorreo(String correo);
 }
 

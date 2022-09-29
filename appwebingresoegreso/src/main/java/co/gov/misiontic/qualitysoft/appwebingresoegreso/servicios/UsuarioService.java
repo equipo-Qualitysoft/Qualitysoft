@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Service
@@ -15,25 +16,31 @@ public class UsuarioService implements IUsarioService{
     @Autowired
     UsuarioRepository usuarioRepository;
 
-    public List<Usuario> getAllUsuario(){
-        List<Usuario> usuarioList = new ArrayList<>();
+    //Metodo para ver todos los usuarios registrados
+    public List<Usuario> getAllUsuario() {
+        List<Usuario> usuarioList=new ArrayList<>();
         usuarioRepository.findAll().forEach(usuario -> usuarioList.add(usuario));
         return usuarioList;
     }
-
-    public Usuario getUsuarioById(Long idUsuario){
-        return usuarioRepository.findById(idUsuario).get();
+    //Metodo pata buscar usuario por id
+    public Optional<Usuario> getUsuarioById(Long idUsuario) {
+        return usuarioRepository.findById(idUsuario);
+    }
+    //Metodo para buscar usuario por empresa
+    public ArrayList<Usuario> obtenerPorEmpresa(Long idEmpresa) {
+        return usuarioRepository.findByEmpresa(idEmpresa );
+    }
+    //Metodo para guardar o actualizar usuario
+    public boolean saveOrUpdateUsuario(Usuario usua) {
+        Usuario usu=usuarioRepository.save(usua);
+        if (usuarioRepository.findById(usu.getIdUsuario())!=null){
+            return true;
+        }
+        return false;
     }
 
-    public ArrayList<Usuario> consultarPorEmpresa(Long idEmpresa){
-        return usuarioRepository.findByusuario(idEmpresa);
-    }
-
-    public Usuario saveOrUpdateUsuario(Usuario usuario){
-        return usuarioRepository.save(usuario);
-    }
-
-    public boolean deleteUsuario(Long idUsuario){
+    //Metodo pata eliminar registro de usuario por id
+    public boolean deleteUsuario(Long idUsuario) {
         usuarioRepository.deleteById(idUsuario);
         if (this.usuarioRepository.findById(idUsuario).isPresent()){
             return false;
@@ -42,3 +49,6 @@ public class UsuarioService implements IUsarioService{
     }
 
 }
+
+
+

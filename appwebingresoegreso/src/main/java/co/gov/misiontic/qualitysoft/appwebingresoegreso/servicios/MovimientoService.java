@@ -34,7 +34,7 @@ public class MovimientoService implements IMovimientoService {
     // RETORNA TODOS LOS MOVIMIENTOS POR EMPRESA
     @Override
     public List<MovimientoDinero> getMovimientoDineroListByEmpresa(Long idEmpresa) {
-        Empresa empresa = empresaServicio.EncontrarId(idEmpresa);
+        Empresa empresa = empresaServicio.getEmpresaById(idEmpresa).get();
         List<MovimientoDinero> movimientos = new ArrayList<>();
         for (MovimientoDinero movimiento : getMovimientoDineroList()) {
             if (movimiento.getUsuario().getEmpresa().equals(empresa)) {
@@ -43,6 +43,7 @@ public class MovimientoService implements IMovimientoService {
         }
         return movimientos;
     }
+
     @Override
     public MovimientoDinero getMovimientoById(Long idMovimiento) {
         return movimientoRepository.findById(idMovimiento).get();
@@ -50,14 +51,23 @@ public class MovimientoService implements IMovimientoService {
 
     @Override
     public MovimientoDinero createMovimiento(Long idEmpresa, MovimientoDinero nuevoMovimiento) {
-        nuevoMovimiento.setEmpresa(empresaServicio.EncontrarId(idEmpresa));
+        nuevoMovimiento.setEmpresa(empresaServicio.getEmpresaById(idEmpresa).get());
         return movimientoRepository.save(nuevoMovimiento);
     }
 
-    @Override
-    public MovimientoDinero updateMovimiento(MovimientoDinero movimiento) {
+//
+//    @Override
+//    public MovimientoDinero updateMovimiento(MovimientoDinero movimiento) {
+//        return movimientoRepository.save(movimiento);
+//    }
+//
+
+    // TERMINAR DE IMPELMENTAR
+    public MovimientoDinero updateMovimientoById(Long idMovimiento, MovimientoDinero movimiento) {
+        //MovimientoDinero movimiento = getMovimientoById(idMovimiento);
         return movimientoRepository.save(movimiento);
     }
+
 
     @Override
     public Boolean deleteMovimiento(Long idMovimiento) {
@@ -66,5 +76,28 @@ public class MovimientoService implements IMovimientoService {
             return Boolean.TRUE;
         }
         return Boolean.FALSE;
+    }
+    @Override
+    public List<MovimientoDinero> getMovimientoListByUsuario(Long idUsuario) {
+        System.out.println("idUsuario: " + idUsuario);
+        return movimientoRepository.findByUsuario(idUsuario);
+    }
+
+    @Override
+    public boolean saveOrUpdateMovimiento(MovimientoDinero movimiento) {
+        if (movimiento.getMonto() > 0){
+            movimiento.setConcepto("VENTA");
+         //   movimiento.getClienteProveedor().setTipoCP(true);
+        }else {
+            movimiento.setConcepto("COMPRA");
+       //     movimiento.getClienteProveedor().setTipoCP(false);
+        }
+        movimiento.setEmpresa(movimiento.getUsuario().getEmpresa());
+
+        MovimientoDinero mov= movimientoRepository.save(movimiento);
+        if (movimientoRepository.findById(mov.getIdMovimiento())!=null){
+            return true;
+        }
+        return false;
     }
 }
