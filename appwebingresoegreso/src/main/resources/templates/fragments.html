@@ -1,0 +1,192 @@
+<!doctype html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- MENU DE LA PAGINA -->
+<div class="menu" th:fragment="html_menu">
+    <a  th:href="@{/tablero}" class="d-block text-light p-3 border-0"><i class="icon ion-ios-home lead mr-2"></i>
+        Homes</a>
+
+    <a th:href="@{/VerEmpresas}" class="d-block text-light p-3 border-0"><i class="icon ion-ios-cube lead mr-2"></i>
+        Empresa</a>
+
+    <a  th:href="@{/VerUsuarios}" class="d-block text-light p-3 border-0"><i class="icon ion-md-people lead mr-2"></i>
+        Usuarios</a>
+
+    <a  th:href="@{/VerMovimientos}" class="d-block text-light p-3 border-0"><i class="ion-ios-cash lead mr-2"></i>
+        Movimientos</a>
+    <a  th:href="@{/VerClientesProveedores}" class="d-block text-light p-3 border-0"><i class="icon ion-md-stats lead mr-2"></i>
+        Clientes Y Proveedores</a>
+    <a  th:href="@{/VerArticulos}" class="d-block text-light p-3 border-0"><i class="icon ion-ios-apps lead mr-2"></i>
+        Zapatos</a>
+    <a th:href="@{/logout}" class="d-block text-light p-3 border-0"> <i class="icon ion-md-settings lead mr-2"></i>
+        Salir</a>
+</div>
+<!-- FIN DE MENU DE LA PAGINA -->
+
+
+
+<!-- BOTONES USUARIOS -->
+
+<section class="bg-mix py-3 " th:fragment="botones_usuarios">
+    <div class="container">
+        <div class="card rounded-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                        <div class="mx-auto">
+                            <a href="./VerUsuarios" class="btn btn-primary w-100 align-self-center">Ver Usuarios</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                        <div class="mx-auto">
+                            <a href="./AgregarUsuario" class="btn btn-primary w-100 align-self-center">Agregar Usuarios</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FIN DE BOTONES USUARIOS -->
+
+<!-- BOTONES EMPRESAS -->
+
+<section class="bg-mix py-3 " th:fragment="botones_Empresas">
+    <div class="container">
+        <div class="card rounded-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                        <div class="mx-auto" >
+                            <a href="./VerEmpresas" class="btn btn-primary w-100 align-self-center">Ver Empresas</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                        <div class="mx-auto">
+                            <a href="./AgregarEmpresa" class="btn btn-primary w-100 align-self-center">Agregar Empresas</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FIN DE BOTONES EMPRESAS -->
+
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom" th:fragment="barra_navegacion" >
+    <div class="container">
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="form-inline position-relative d-inline-block my-2">
+                <input class="form-control" type="search" placeholder="Buscar" aria-label="Buscar">
+                <button class="btn position-absolute btn-search" type="submit"><i class="icon ion-md-search"></i></button>
+            </form>
+
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                <li class="nav-item dropdown ">
+                    <a class="nav-link text-dark dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img th:src="${user.get('picture')}" th:attr="alt=${user.get('name')}" class="img-fluid rounded-circle avatar mr-2"
+                             alt="https://generated.photos/"  />
+                        <label th:text="${user.get('name')}"></label>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" th:text="${user.get('email')}"></a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/logout}">Cerrar sesión</a>
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<!--FIN NAVBAR -->
+
+
+
+
+<!-- BOTONES MOVIMIENTOS -->
+
+<section class="bg-mix py-3 " th:fragment="botones_movimientos">
+    <div class="container">
+        <div class="card rounded-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                        <div class="mx-auto">
+                            <a href="./VerMovimientos" class="btn btn-primary w-100 align-self-center">Ver Movimientos</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                        <div class="mx-auto">
+                            <a href="./AgregarMovimiento" class="btn btn-primary w-100 align-self-center">Agregar Movimiento</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FIN DE BOTONES MOVIMIENTOS -->
+
+
+<!-- BOTONES ARTICULOS -->
+<section class="bg-mix py-3 " th:fragment="botones_articulos">
+    <div class="container">
+        <div class="card rounded-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                        <div class="mx-auto">
+                            <a href="./VerArticulos" class="btn btn-primary w-100 align-self-center">Ver Articulos</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FIN DE BOTONES ARETICULOS -->
+
+<!-- BOTONES CLIESTES/PROVEEDORES -->
+<section class="bg-mix py-3 " th:fragment="botones_clientes_proveedores">
+    <div class="container">
+        <div class="card rounded-0">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-md-6 d-flex stat my-3">
+                        <div class="mx-auto">
+                            <a href="./VerClientesProveedores" class="btn btn-primary w-100 align-self-center">Ver Clientes y/o Poveedores</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</section>
+
+<!-- FIN DE BOTONES CLIENTES/PROVEDORES -->
+
+<!-- Sidebar -->
+<div id="sidebar-container" class="bg-primary" th:fragment="logo_camina">
+    <div class="logo">
+        <h4 class="text-light font-weight-bold mb-0">Camina con Estilo</h4>
+    </div>
+    <div th:replace="fragments :: html_menu" >             </div>
+</div>
+<!-- Fin sidebar -->
+</html>
